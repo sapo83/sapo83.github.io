@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+
+<meta name="description" content="Sarah Codes.">
+<title>
+    A Modern Day Comparison of 3 Heat Map Packages - Part 1 - Sarah Codes
+</title>
+
+
+<link rel="shortcut icon" href="/computer.png">
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.min.a6f67bb7e5e018219c35238a10de71521756cf7f62015f07aa8e16c2c69b1a26.css" integrity="sha256-pvZ7t&#43;XgGCGcNSOKEN5xUhdWz39iAV8Hqo4WwsabGiY=" crossorigin="anonymous" media="screen">
+
+
+
+
+  
+
+
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Didact+Gothic">
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://sapo83.github.io/99"/>
+
+<meta name="twitter:title" content="A Modern Day Comparison of 3 Heat Map Packages - Part 1"/>
+<meta name="twitter:description" content="I’m going to use some early data from the first week of #TidyTuesday to do a comparison of different methods for making a heat map. The three packages I’m going to compare are ggplot2, pheatmap, &amp; ComplexHeatmap.
+The first package I’m going to look at is ggplot2, an integral part of the tidyverse.* You can create a heat map in ggplot2 using geom_tile(). One of the pros of making any type of plot in ggplot2 is it plays well with other types of plots made in ggplot2."/>
+
+<meta property="og:title" content="A Modern Day Comparison of 3 Heat Map Packages - Part 1" />
+<meta property="og:description" content="I’m going to use some early data from the first week of #TidyTuesday to do a comparison of different methods for making a heat map. The three packages I’m going to compare are ggplot2, pheatmap, &amp; ComplexHeatmap.
+The first package I’m going to look at is ggplot2, an integral part of the tidyverse.* You can create a heat map in ggplot2 using geom_tile(). One of the pros of making any type of plot in ggplot2 is it plays well with other types of plots made in ggplot2." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sapo83.github.io/posts/heatmap_comparison_part1/" />
+<meta property="og:image" content="https://sapo83.github.io/99"/>
+<meta property="article:published_time" content="2021-01-14T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-01-14T00:00:00+00:00" /><meta property="og:site_name" content="Sarah Codes" />
+
+
+    
+
+    
+    
+    
+    <title>
+        
+        A Modern Day Comparison of 3 Heat Map Packages - Part 1
+        
+    </title>
+</head>
+
+<body>
+    
+    
+    <header class="wrap flex-container">
+        <h1>A Modern Day Comparison of 3 Heat Map Packages - Part 1</h1>
+    </header>
+    
+    <main class="wrap">
+        
+<div class="flex-container">
+    <aside role="complementary">
+        Thu Jan 14, 2021 &#183; 1448 words
+        <div class="tag-container">
+            
+            
+            <span class="tag">
+                <a href="/tags/tidytuesday/">
+                    TidyTuesday
+                </a>
+            </span>
+            
+            
+            
+            <span class="tag">
+                <a href="/tags/heat-map/">
+                    heat map
+                </a>
+            </span>
+            
+            
+            
+            <span class="tag">
+                <a href="/tags/tuition/">
+                    tuition
+                </a>
+            </span>
+            
+            
+            
+            <span class="tag">
+                <a href="/tags/tidyverse/">
+                    tidyverse
+                </a>
+            </span>
+            
+            
+            
+            <span class="tag">
+                <a href="/tags/part-1/">
+                    part 1
+                </a>
+            </span>
+            
+            
+        </div>
+    </aside>
+    <hr />
+    <article role="article">
+        
+
+
+<p>I’m going to use some early data from the first week of <a href="https://twitter.com/search?q=%23TidyTuesday&amp;src=typed_query">#TidyTuesday</a> to do a comparison of different methods for making a heat map. The three packages I’m going to compare are <strong>ggplot2</strong>, <strong>pheatmap</strong>, &amp; <strong>ComplexHeatmap</strong>.</p>
+<p>The first package I’m going to look at is <strong>ggplot2</strong>, an integral part of the <strong>tidyverse</strong>.* You can create a heat map in <strong>ggplot2</strong> using <code>geom_tile()</code>. One of the pros of making any type of plot in <strong>ggplot2</strong> is it plays well with other types of plots made in <strong>ggplot2</strong>. This allows you to combine many different types of plots into a single figure in a pretty straight forward fashion (for example, a heat map &amp; a bar plot together). They all follow a similar pattern so once you get the hang of how to make one type of plot, you can apply those principles to other types of plots. The only big negative I can think of for making heat maps in <strong>ggplot2</strong> is it’s a bit more difficult to cluster your data. It’s not impossible, but it’s quite a bit of extra work as compared to other packages.</p>
+<p>Let’s start by creating a heat map of our data in <strong>ggplot2</strong>. In Part 2 &amp; Part 3 of this post, I’ll recreate that plot using <strong>pheatmap</strong> &amp; <strong>ComplexHeatmap</strong>.</p>
+<ul>
+<li>To clarify, calling <strong>ggplot2</strong> a heat map package is trivializing the sheer number of things you can do with it. However, in this case, we’re only interested in the heat map capabilities.</li>
+</ul>
+<div id="a-quick-description-of-our-data." class="section level2">
+<h2>A quick description of our data.</h2>
+<p>This data is the average in-state tuition &amp; fees for one year of full time study at a public 4 year institution for each state from the 2004-2005 school year to 2015-2016. You can download the data <a href="https://github.com/rfordatascience/tidytuesday/blob/master/data/2018/2018-04-02/us_avg_tuition.xlsx?raw=true">here</a>.</p>
+<p>Let’s get started! First, let’s load the libraries we’re going to use.</p>
+<pre class="r"><code>library(tidyverse)
+library(RColorBrewer)</code></pre>
+<p>Next, I want to read in the file we’re going to get our data from. I saved it to my Github so I’ll have it for future use. Also, this way I can read it in from any where. I’m using <code>read_csv()</code> to read the file into an object named<code>df</code>. Then we can use <code>df</code> to see what our data looks like.</p>
+<pre class="r"><code>df = read_csv(&quot;https://raw.githubusercontent.com/sapo83/TidyTuesday/master/2018/TT.20180403/us.avg.tuition.noCR.csv&quot;)</code></pre>
+<pre><code>## 
+## ── Column specification ────────────────────────────────────────────────────────
+## cols(
+##   State = col_character(),
+##   `2004-05` = col_character(),
+##   `2005-06` = col_character(),
+##   `2006-07` = col_character(),
+##   `2007-08` = col_character(),
+##   `2008-09` = col_character(),
+##   `2009-10` = col_character(),
+##   `2010-11` = col_character(),
+##   `2011-12` = col_character(),
+##   `2012-13` = col_character(),
+##   `2013-14` = col_character(),
+##   `2014-15` = col_character(),
+##   `2015-16` = col_character()
+## )</code></pre>
+<pre class="r"><code>df</code></pre>
+<pre><code>## # A tibble: 50 x 13
+##    State `2004-05` `2005-06` `2006-07` `2007-08` `2008-09` `2009-10` `2010-11`
+##    &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;    
+##  1 Alab… $5,683    $5,841    $5,753    $6,008    $6,475    $7,189    $8,071   
+##  2 Alas… $4,328    $4,633    $4,919    $5,070    $5,075    $5,455    $5,759   
+##  3 Ariz… $5,138    $5,416    $5,481    $5,682    $6,058    $7,263    $8,840   
+##  4 Arka… $5,772    $6,082    $6,232    $6,415    $6,417    $6,627    $6,901   
+##  5 Cali… $5,286    $5,528    $5,335    $5,672    $5,898    $7,259    $8,194   
+##  6 Colo… $4,704    $5,407    $5,596    $6,227    $6,284    $6,948    $7,748   
+##  7 Conn… $7,984    $8,249    $8,368    $8,678    $8,721    $9,371    $9,827   
+##  8 Dela… $8,353    $8,611    $8,682    $8,946    $8,995    $9,987    $10,534  
+##  9 Flor… $3,848    $3,924    $3,888    $3,879    $4,150    $4,783    $5,511   
+## 10 Geor… $4,298    $4,492    $4,584    $4,790    $4,831    $5,550    $6,428   
+## # … with 40 more rows, and 5 more variables: `2011-12` &lt;chr&gt;, `2012-13` &lt;chr&gt;,
+## #   `2013-14` &lt;chr&gt;, `2014-15` &lt;chr&gt;, `2015-16` &lt;chr&gt;</code></pre>
+<p>So far everything looks good! The first thing I want to do is remove the dollar signs &amp; the commas from each value. This will make it easier to work with.</p>
+<p>Let’s break the command down. <code>gsub()</code> is used to substitute a pattern with a new pattern. The general pattern is <code>gsub("old_pattern", "new_pattern", object)</code>. Here I’m looking for either a dollar sign or comma <code>[$,]</code> &amp; replacing it with nothing <code>""</code>. I’m using <code>lapply()</code> to apply this function to each column. Here the <code>x</code> represents the argument being passed to the function. In this case the argument is a column from my data frame as a list. I wrap the whole command in <code>as.data.frame()</code> so that the returned object is a data frame.</p>
+<pre class="r"><code>df = as.data.frame(lapply(df, function (x) {gsub(&quot;[$,]&quot;, &quot;&quot;, x)}))
+
+head(df)</code></pre>
+<pre><code>##        State X2004.05 X2005.06 X2006.07 X2007.08 X2008.09 X2009.10 X2010.11
+## 1    Alabama     5683     5841     5753     6008     6475     7189     8071
+## 2     Alaska     4328     4633     4919     5070     5075     5455     5759
+## 3    Arizona     5138     5416     5481     5682     6058     7263     8840
+## 4   Arkansas     5772     6082     6232     6415     6417     6627     6901
+## 5 California     5286     5528     5335     5672     5898     7259     8194
+## 6   Colorado     4704     5407     5596     6227     6284     6948     7748
+##   X2011.12 X2012.13 X2013.14 X2014.15 X2015.16
+## 1     8452     9098     9359     9496     9751
+## 2     5762     6026     6012     6149     6571
+## 3     9967    10134    10296    10414    10646
+## 4     7029     7287     7408     7606     7867
+## 5     9436     9361     9274     9187     9270
+## 6     8316     8793     9293     9299     9748</code></pre>
+<p>Next, I need this data frame to be in long format instead of wide.</p>
+<div id="a-bit-about-long-versus-wide." class="section level3">
+<h3>A bit about long versus wide.</h3>
+<p>Generally, to plot data using ggplot the data needs to be in long format. This means one observation in each row. This also means a single subject with multiple measurements will have multiple rows in the data frame. In our melted data frame, you can see each state (the subject) has multiple rows. Each row corresponds to a single measurement (tuition for a specific academic year)</p>
+<p>When a single subject has one row with multiple measurements then the data is in wide format. In our original data frame, each row had one state (the subject) with multiple measurements in each row (each column represents one measurement).</p>
+<p>Here I’m going to use <code>melt()</code> from the <strong>reshape2</strong> package. Another option is <code>pivot_longer()</code> from the <strong>tidyr</strong> package. <strong>tidyr</strong> is loaded as part of the <strong>tidyverse</strong> library. <a href="https://tidyr.tidyverse.org/articles/pivot.html">Here</a> is a vignette to learn more about <code>pivot_longer()</code> and <code>pivot_wider()</code>.</p>
+<p>In the melt, I used <code>variable = "Years"</code> to specify the variable column to be named Years. I used <code>value.name = "Tuition"</code> to specify that I want the value column named Tuition.</p>
+<p>Along with the melt, I also want to correct how the years are written. After the melt, the Years column looks like <code>X2005.06</code>. I don’t like that. Again, I’m using <code>gsub()</code> as a find and replace. I nested two <code>gsub()</code> commands to first replace the <code>X</code> with nothing &amp; then replace the <code>.</code> with <code>-20</code>.</p>
+<p>Last thing! After the melt, Tuition is changed to a character column. This interferes with plotting our data later. In the <code>mutate()</code> call, I’m going to use <code>as.numeric()</code> to change it back to a number.</p>
+<p>Now everything looks better!</p>
+<pre class="r"><code>melted_df = reshape2::melt(df, id.vars = &quot;State&quot;, variable = &quot;Years&quot;, 
+                           value.name = &quot;Tuition&quot;) %&gt;%
+  mutate(Years = gsub(&quot;[.]&quot;, &quot;-20&quot;, gsub(&quot;X&quot;, &quot;&quot;, Years)), Tuition = as.numeric(Tuition))
+
+head(melted_df)</code></pre>
+<pre><code>##        State     Years Tuition
+## 1    Alabama 2004-2005    5683
+## 2     Alaska 2004-2005    4328
+## 3    Arizona 2004-2005    5138
+## 4   Arkansas 2004-2005    5772
+## 5 California 2004-2005    5286
+## 6   Colorado 2004-2005    4704</code></pre>
+<p>Now that we have our melted data frame let’s make a heat map.</p>
+<pre class="r"><code>ggplot(data = melted_df, aes(x = Years, y = State, fill = Tuition)) +
+  geom_tile()</code></pre>
+<p><img src="/posts/heatmap_comparison_part1_files/figure-html/orig_heatmap-1.png" width="672" />
+Not bad! One of the first things I noticed is that y axis is out of order. I’d like to see those states in alphabetical order. We can use <code>fct_rev()</code> to reverse the order.</p>
+<pre class="r"><code>ggplot(data = melted_df, aes(x = Years, y = fct_rev(State), fill = Tuition)) +
+  geom_tile()</code></pre>
+<p><img src="/posts/heatmap_comparison_part1_files/figure-html/reorder_yaxis-1.png" width="672" />
+Better! Next I want to rotate the x axis labels so they are more readable. We can do this using a call to <code>theme()</code>. We specify <code>axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1)</code> to rotate the labels &amp; then center them on the tick mark.</p>
+<pre class="r"><code>ggplot(data = melted_df, aes(x = Years, y = fct_rev(State), fill = Tuition)) +
+  geom_tile() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1))</code></pre>
+<p><img src="/posts/heatmap_comparison_part1_files/figure-html/rotate_xaxis_labels-1.png" width="672" />
+Last up, I want to change the color palette &amp; relabel the axes. I really like the “red, yellow, blue” palette from <a href="https://colorbrewer2.org/#type=diverging&amp;scheme=RdYlBu&amp;n=11">ColorBrewer</a>. I adapted it here to use as a continuous scale. To relabel the axes, I use a call to <code>lab()</code>.</p>
+<pre class="r"><code>cols = colorRampPalette(rev(brewer.pal(11, &quot;RdYlBu&quot;)))
+
+ggplot(data = melted_df, aes(x = Years, y = fct_rev(State), fill = Tuition)) +
+  geom_tile() +
+  scale_fill_gradientn(colours = cols(11)) +
+  labs(y = &quot;State&quot;,
+       x = &quot;Years&quot;, 
+       fill = &quot;Tuition ($)&quot;) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1))</code></pre>
+<p><img src="/posts/heatmap_comparison_part1_files/figure-html/final_plot-1.png" width="672" /></p>
+<p>That looks good! I’m going to call this done! If you have any questions, feel free to reach out to me on <a href="https://twitter.com/sapo83">Twitter</a>. Head over to <a href="https://sapo83.github.io/posts/heatmap_comparison_part2/">Part 2</a> or <a href="https://sapo83.github.io/posts/heatmap_comparison_part3/">Part 3</a>.</p>
+</div>
+</div>
+
+    </article>
+</div>
+
+
+        
+<nav role="navigation" class="flex-container bottom-menu">
+    
+<hr />
+<p>
+
+
+    
+        <a href="/posts">back</a>
+        
+            &#183;
+        
+    
+
+    
+        
+            <a href="/posts">posts</a>
+        
+    
+    
+        
+            &#183; 
+            <a href="/pubs">publications</a>
+        
+            &#183; 
+            <a href="/about">about</a>
+        
+            &#183; 
+            <a href="/contact">contact</a>
+        
+    
+    &#183; 
+    <a href="/">
+        main
+    </a>
+
+</p>
+</nav>
+
+    </main>
+    
+    <footer class="flex-container footer">Copyright © 2021. Sarah Entwistle. All rights reserved.
+</footer>
+    
+    
+</body>
+
+</html>

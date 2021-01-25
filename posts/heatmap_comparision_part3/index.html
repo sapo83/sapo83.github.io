@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+
+<meta name="description" content="Sarah Codes.">
+<title>
+    A Modern Day Comparison of 3 Heat Map Packages - Part 3 - Sarah Codes
+</title>
+
+
+<link rel="shortcut icon" href="/computer.png">
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.min.a6f67bb7e5e018219c35238a10de71521756cf7f62015f07aa8e16c2c69b1a26.css" integrity="sha256-pvZ7t&#43;XgGCGcNSOKEN5xUhdWz39iAV8Hqo4WwsabGiY=" crossorigin="anonymous" media="screen">
+
+
+
+
+  
+
+
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Didact+Gothic">
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://sapo83.github.io/99"/>
+
+<meta name="twitter:title" content="A Modern Day Comparison of 3 Heat Map Packages - Part 3"/>
+<meta name="twitter:description" content="This is Part 3 in my series comparing different heat map packages. You can find Part 1 here &amp; Part 2 here.
+In this part, I’m going to look at ComplexHeatmap. I think I first came across ComplexHeatmap on Twitter. It looks to have some really great features. The clustering &amp; annotation features alone look amazing!!! This seemed like the perfect excuse to play with it a bit.
+We’re going to use the same data as before."/>
+
+<meta property="og:title" content="A Modern Day Comparison of 3 Heat Map Packages - Part 3" />
+<meta property="og:description" content="This is Part 3 in my series comparing different heat map packages. You can find Part 1 here &amp; Part 2 here.
+In this part, I’m going to look at ComplexHeatmap. I think I first came across ComplexHeatmap on Twitter. It looks to have some really great features. The clustering &amp; annotation features alone look amazing!!! This seemed like the perfect excuse to play with it a bit.
+We’re going to use the same data as before." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sapo83.github.io/posts/heatmap_comparision_part3/" />
+<meta property="og:image" content="https://sapo83.github.io/99"/>
+<meta property="article:published_time" content="2021-01-24T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-01-24T00:00:00+00:00" /><meta property="og:site_name" content="Sarah Codes" />
+
+
+    
+
+    
+    
+    
+    <title>
+        
+        A Modern Day Comparison of 3 Heat Map Packages - Part 3
+        
+    </title>
+</head>
+
+<body>
+    
+    
+    <header class="wrap flex-container">
+        <h1>A Modern Day Comparison of 3 Heat Map Packages - Part 3</h1>
+    </header>
+    
+    <main class="wrap">
+        
+<div class="flex-container">
+    <aside role="complementary">
+        Sun Jan 24, 2021 &#183; 974 words
+        <div class="tag-container">
+            
+            
+            <span class="tag">
+                <a href="/tags/tidytuesday/">
+                    TidyTuesday
+                </a>
+            </span>
+            
+            
+            
+            <span class="tag">
+                <a href="/tags/heat-map/">
+                    heat map
+                </a>
+            </span>
+            
+            
+            
+            <span class="tag">
+                <a href="/tags/tuition/">
+                    tuition
+                </a>
+            </span>
+            
+            
+            
+            <span class="tag">
+                <a href="/tags/tidyverse/">
+                    tidyverse
+                </a>
+            </span>
+            
+            
+            
+            <span class="tag">
+                <a href="/tags/part-3/">
+                    part 3
+                </a>
+            </span>
+            
+            
+            
+            <span class="tag">
+                <a href="/tags/complexheatmap/">
+                    ComplexHeatmap
+                </a>
+            </span>
+            
+            
+        </div>
+    </aside>
+    <hr />
+    <article role="article">
+        
+
+
+<p>This is Part 3 in my series comparing different heat map packages. You can find Part 1 <a href="https://sapo83.github.io/posts/heatmap_comparison_part1/">here</a> &amp; Part 2 <a href="https://sapo83.github.io/posts/heatmap_comparison_part2/">here</a>.</p>
+<p>In this part, I’m going to look at <strong>ComplexHeatmap</strong>. I think I first came across <strong>ComplexHeatmap</strong> on Twitter. It looks to have some really great features. The clustering &amp; annotation features alone look amazing!!! This seemed like the perfect excuse to play with it a bit.</p>
+<p>We’re going to use the same data as <a href="https://github.com/rfordatascience/tidytuesday/blob/master/data/2018/2018-04-02/us_avg_tuition.xlsx?raw=true">before</a>. A lot of the data wrangling will look similar to <a href="https://sapo83.github.io/posts/heatmap_comparison_part1/">Part 1</a>.</p>
+<p>Let’s start by loading the libraries we need. In case you are unfamiliar with how to download a package from Github, I included the command in the following code chunk.</p>
+<pre class="r"><code>devtools::install_github(&quot;jokergoo/ComplexHeatmap&quot;)</code></pre>
+<pre><code>## 
+##   
+   checking for file ‘/private/var/folders/9d/85rcf3g538ddrrqhd9v_l_7c0000gn/T/RtmpXtJMvn/remotes86534db3a3/jokergoo-ComplexHeatmap-659c08b/DESCRIPTION’ ...
+  
+✓  checking for file ‘/private/var/folders/9d/85rcf3g538ddrrqhd9v_l_7c0000gn/T/RtmpXtJMvn/remotes86534db3a3/jokergoo-ComplexHeatmap-659c08b/DESCRIPTION’ (364ms)
+## 
+  
+─  preparing ‘ComplexHeatmap’: (792ms)
+## 
+  
+   checking DESCRIPTION meta-information ...
+  
+✓  checking DESCRIPTION meta-information
+## 
+  
+─  checking for LF line-endings in source and make files and shell scripts (411ms)
+## 
+  
+─  checking for empty or unneeded directories
+## 
+  
+─  building ‘ComplexHeatmap_2.7.6.1002.tar.gz’
+## 
+  
+   
+## </code></pre>
+<pre class="r"><code>library(tidyverse)
+library(RColorBrewer)
+# devtools::install_github(&quot;jokergoo/ComplexHeatmap&quot;)
+library(ComplexHeatmap)</code></pre>
+<p>We’re going to read in our data similar to before, using <code>read_csv()</code>.</p>
+<pre class="r"><code>df = read_csv(&quot;https://raw.githubusercontent.com/sapo83/TidyTuesday/master/2018/TT.20180403/us.avg.tuition.noCR.csv&quot;)</code></pre>
+<pre><code>## 
+## ── Column specification ────────────────────────────────────────────────────────
+## cols(
+##   State = col_character(),
+##   `2004-05` = col_character(),
+##   `2005-06` = col_character(),
+##   `2006-07` = col_character(),
+##   `2007-08` = col_character(),
+##   `2008-09` = col_character(),
+##   `2009-10` = col_character(),
+##   `2010-11` = col_character(),
+##   `2011-12` = col_character(),
+##   `2012-13` = col_character(),
+##   `2013-14` = col_character(),
+##   `2014-15` = col_character(),
+##   `2015-16` = col_character()
+## )</code></pre>
+<pre class="r"><code>head(df)</code></pre>
+<pre><code>## # A tibble: 6 x 13
+##   State `2004-05` `2005-06` `2006-07` `2007-08` `2008-09` `2009-10` `2010-11`
+##   &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;    
+## 1 Alab… $5,683    $5,841    $5,753    $6,008    $6,475    $7,189    $8,071   
+## 2 Alas… $4,328    $4,633    $4,919    $5,070    $5,075    $5,455    $5,759   
+## 3 Ariz… $5,138    $5,416    $5,481    $5,682    $6,058    $7,263    $8,840   
+## 4 Arka… $5,772    $6,082    $6,232    $6,415    $6,417    $6,627    $6,901   
+## 5 Cali… $5,286    $5,528    $5,335    $5,672    $5,898    $7,259    $8,194   
+## 6 Colo… $4,704    $5,407    $5,596    $6,227    $6,284    $6,948    $7,748   
+## # … with 5 more variables: `2011-12` &lt;chr&gt;, `2012-13` &lt;chr&gt;, `2013-14` &lt;chr&gt;,
+## #   `2014-15` &lt;chr&gt;, `2015-16` &lt;chr&gt;</code></pre>
+<p>Next we need to remove the dollar signs &amp; commas from the numeric values.</p>
+<pre class="r"><code>df = as.data.frame(lapply(df, function (x) {gsub(&quot;[$,]&quot;, &quot;&quot;, x)}))
+
+head(df)</code></pre>
+<pre><code>##        State X2004.05 X2005.06 X2006.07 X2007.08 X2008.09 X2009.10 X2010.11
+## 1    Alabama     5683     5841     5753     6008     6475     7189     8071
+## 2     Alaska     4328     4633     4919     5070     5075     5455     5759
+## 3    Arizona     5138     5416     5481     5682     6058     7263     8840
+## 4   Arkansas     5772     6082     6232     6415     6417     6627     6901
+## 5 California     5286     5528     5335     5672     5898     7259     8194
+## 6   Colorado     4704     5407     5596     6227     6284     6948     7748
+##   X2011.12 X2012.13 X2013.14 X2014.15 X2015.16
+## 1     8452     9098     9359     9496     9751
+## 2     5762     6026     6012     6149     6571
+## 3     9967    10134    10296    10414    10646
+## 4     7029     7287     7408     7606     7867
+## 5     9436     9361     9274     9187     9270
+## 6     8316     8793     9293     9299     9748</code></pre>
+<p>Similar to <strong>pheatmap</strong>, <strong>ComplexHeatmap</strong> requires a numeric matrix. I will use <code>as.numeric()</code> inside <code>sapply()</code> to make sure each column except the first is numeric. I’ll wrap this in <code>as.matrix()</code> to return a new matrix object (<code>df_num</code>). We will assign the state names as row names to our new object.</p>
+<pre class="r"><code>df_num = as.matrix(sapply(df[, 2:13], as.numeric))  
+
+rownames(df_num) = df$State
+
+head(df)</code></pre>
+<pre><code>##        State X2004.05 X2005.06 X2006.07 X2007.08 X2008.09 X2009.10 X2010.11
+## 1    Alabama     5683     5841     5753     6008     6475     7189     8071
+## 2     Alaska     4328     4633     4919     5070     5075     5455     5759
+## 3    Arizona     5138     5416     5481     5682     6058     7263     8840
+## 4   Arkansas     5772     6082     6232     6415     6417     6627     6901
+## 5 California     5286     5528     5335     5672     5898     7259     8194
+## 6   Colorado     4704     5407     5596     6227     6284     6948     7748
+##   X2011.12 X2012.13 X2013.14 X2014.15 X2015.16
+## 1     8452     9098     9359     9496     9751
+## 2     5762     6026     6012     6149     6571
+## 3     9967    10134    10296    10414    10646
+## 4     7029     7287     7408     7606     7867
+## 5     9436     9361     9274     9187     9270
+## 6     8316     8793     9293     9299     9748</code></pre>
+<p>Finally before we plot our data, we’ll clean up our column names. Two nested <code>gsub()</code> commands remove the prefix “X” and replace the dash (“-”) with “-20” to make both values 4 digit years.</p>
+<pre class="r"><code>colnames(df_num) = gsub(&quot;[.]&quot;, &quot;-20&quot;, gsub(&quot;X&quot;, &quot;&quot;, colnames(df_num)))</code></pre>
+<p>Now let’s plot our heat map!</p>
+<pre class="r"><code>Heatmap(df_num)</code></pre>
+<p><img src="/posts/heatmap_comparision_part3_files/figure-html/OG_heatmap-1.png" width="672" /></p>
+<p>Ok! Not bad! First thing I’d like to change is the order of the columns. I’m going to add <code>column_order = sort(colnames(df_num))</code> to reverse the order of the columns. When you use <code>column_order</code> column clustering is set to FALSE. This also removes the column dendrogram we see in the original version.</p>
+<pre class="r"><code>Heatmap(df_num,
+        column_order = sort(colnames(df_num)))</code></pre>
+<p><img src="/posts/heatmap_comparision_part3_files/figure-html/1_heatmap-1.png" width="672" />
+Next I want to apply the same color palette &amp; change the title of the legend. <code>col = rev(brewer.pal(11, "RdYlBu"))</code> uses the same palette as the previous 2 plots. <code>name = "Tuition"</code> renames our legend to a more descriptive title.</p>
+<pre class="r"><code>Heatmap(df_num,
+        column_order = sort(colnames(df_num)),
+        col = rev(brewer.pal(11, &quot;RdYlBu&quot;)),
+        name = &quot;Tuition&quot;)</code></pre>
+<p><img src="/posts/heatmap_comparision_part3_files/figure-html/2_heatmap-1.png" width="672" />
+Last of all, I want to change the size of each tile. I’ll use <code>width</code> &amp; <code>height</code> to control that.</p>
+<pre class="r"><code>Heatmap(df_num,
+        column_order = sort(colnames(df_num)),
+        col = rev(brewer.pal(11, &quot;RdYlBu&quot;)),
+        name = &quot;Tuition&quot;,
+        width = ncol(df_num)*unit(5, &quot;mm&quot;), 
+        height = nrow(df_num)*unit(5, &quot;mm&quot;))</code></pre>
+<p><img src="/posts/heatmap_comparision_part3_files/figure-html/final_heatmap-1.png" width="672" />
+This looks very similar to the clustered heat map we made in <a href="https://sapo83.github.io/posts/heatmap_comparison_part2/">Part 2</a> with <strong>pheatmap</strong>. It’s interesting to note the slight differences in clustering between the two packages. I would assume they are using slightly different clustering algorithms.</p>
+<p>I have barely scratched the surface on <strong>ComplexHeatmap</strong>. I think the main takeaway from each of these 3 packages is that each one fits certain use cases. Hopefully this has helped you identify which one would suit your needs best. Feel free to reach out with any questions/comments/concerns via <a href="https://twitter.com/sapo83">Twitter</a> or using one of the other methods on my <a href="https://sapo83.github.io/contact/">contact page</a>. Thanks for reading!</p>
+
+    </article>
+</div>
+
+
+        
+<nav role="navigation" class="flex-container bottom-menu">
+    
+<hr />
+<p>
+
+
+    
+        <a href="/posts">back</a>
+        
+            &#183;
+        
+    
+
+    
+        
+            <a href="/posts">posts</a>
+        
+    
+    
+        
+            &#183; 
+            <a href="/pubs">publications</a>
+        
+            &#183; 
+            <a href="/about">about</a>
+        
+            &#183; 
+            <a href="/contact">contact</a>
+        
+    
+    &#183; 
+    <a href="/">
+        main
+    </a>
+
+</p>
+</nav>
+
+    </main>
+    
+    <footer class="flex-container footer">Copyright © 2021. Sarah Entwistle. All rights reserved.
+</footer>
+    
+    
+</body>
+
+</html>

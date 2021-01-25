@@ -86,7 +86,7 @@ We’re going to use the same data as before." />
         
 <div class="flex-container">
     <aside role="complementary">
-        Sun Jan 24, 2021 &#183; 974 words
+        Sun Jan 24, 2021 &#183; 917 words
         <div class="tag-container">
             
             
@@ -148,36 +148,9 @@ We’re going to use the same data as before." />
 <p>In this part, I’m going to look at <strong>ComplexHeatmap</strong>. I think I first came across <strong>ComplexHeatmap</strong> on Twitter. It looks to have some really great features. The clustering &amp; annotation features alone look amazing!!! This seemed like the perfect excuse to play with it a bit.</p>
 <p>We’re going to use the same data as <a href="https://github.com/rfordatascience/tidytuesday/blob/master/data/2018/2018-04-02/us_avg_tuition.xlsx?raw=true">before</a>. A lot of the data wrangling will look similar to <a href="https://sapo83.github.io/posts/heatmap_comparison_part1/">Part 1</a>.</p>
 <p>Let’s start by loading the libraries we need. In case you are unfamiliar with how to download a package from Github, I included the command in the following code chunk.</p>
-<pre class="r"><code>devtools::install_github(&quot;jokergoo/ComplexHeatmap&quot;)</code></pre>
-<pre><code>## 
-##   
-   checking for file ‘/private/var/folders/9d/85rcf3g538ddrrqhd9v_l_7c0000gn/T/RtmpXtJMvn/remotes86534db3a3/jokergoo-ComplexHeatmap-659c08b/DESCRIPTION’ ...
-  
-✓  checking for file ‘/private/var/folders/9d/85rcf3g538ddrrqhd9v_l_7c0000gn/T/RtmpXtJMvn/remotes86534db3a3/jokergoo-ComplexHeatmap-659c08b/DESCRIPTION’ (364ms)
-## 
-  
-─  preparing ‘ComplexHeatmap’: (792ms)
-## 
-  
-   checking DESCRIPTION meta-information ...
-  
-✓  checking DESCRIPTION meta-information
-## 
-  
-─  checking for LF line-endings in source and make files and shell scripts (411ms)
-## 
-  
-─  checking for empty or unneeded directories
-## 
-  
-─  building ‘ComplexHeatmap_2.7.6.1002.tar.gz’
-## 
-  
-   
-## </code></pre>
-<pre class="r"><code>library(tidyverse)
+<pre class="r"><code># devtools::install_github(&quot;jokergoo/ComplexHeatmap&quot;)
+library(tidyverse)
 library(RColorBrewer)
-# devtools::install_github(&quot;jokergoo/ComplexHeatmap&quot;)
 library(ComplexHeatmap)</code></pre>
 <p>We’re going to read in our data similar to before, using <code>read_csv()</code>.</p>
 <pre class="r"><code>df = read_csv(&quot;https://raw.githubusercontent.com/sapo83/TidyTuesday/master/2018/TT.20180403/us.avg.tuition.noCR.csv&quot;)</code></pre>

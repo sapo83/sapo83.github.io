@@ -13,8 +13,8 @@
       <pubDate>Tue, 19 Jan 2021 00:00:00 +0000</pubDate>
       
       <guid>https://sapo83.github.io/posts/heatmap_comparison_part2/</guid>
-      <description>We’re back to look at another heat map package! This is Part 2 of a 3 part series. You can find Part 1 here.
-As someone who learned R using primarily the tidyverse, pheatmap had a bit of a learning curve. As a grad student, I was looking for an easier way to make a heat map with clustered data. I was trying to make heat maps for about 50 clusters in a programmatic way.</description>
+      <description>We&amp;rsquo;re back to look at another heat map package! This is Part 2 of a 3 part series. You can find Part 1 here.
+As someone who learned R using primarily the tidyverse, pheatmap had a bit of a learning curve. As a grad student, I was looking for an easier way to make a heat map with clustered data. I was trying to make heat maps for about 50 gene clusters in a programmatic way.</description>
     </item>
     
   </channel>

@@ -25,7 +25,7 @@
 
 
 
-<link rel="stylesheet" href="/css/main.min.a6f67bb7e5e018219c35238a10de71521756cf7f62015f07aa8e16c2c69b1a26.css" integrity="sha256-pvZ7t&#43;XgGCGcNSOKEN5xUhdWz39iAV8Hqo4WwsabGiY=" crossorigin="anonymous" media="screen">
+<link rel="stylesheet" href="/css/main.min.32608b5974b2d1ed4868d4d480fbdc1db0c7a7bad37d9bc0f2c3b5d50e90fa6a.css" integrity="sha256-MmCLWXSy0e1IaNTUgPvcHbDHp7rTfZvA8sO11Q6Q&#43;mo=" crossorigin="anonymous" media="screen">
 
 
 
@@ -44,13 +44,13 @@
 
 <meta name="twitter:title" content="A Modern Day Comparison of 3 Heat Map Packages - Part 3"/>
 <meta name="twitter:description" content="This is Part 3 in my series comparing different heat map packages. You can find Part 1 here &amp; Part 2 here.
-In this part, I’m going to look at ComplexHeatmap. I think I first came across ComplexHeatmap on Twitter. It looks to have some really great features. The clustering &amp; annotation features alone look amazing!!! This seemed like the perfect excuse to play with it a bit.
-We’re going to use the same data as before."/>
+In this part, I&rsquo;m going to look at ComplexHeatmap. I think I first came across ComplexHeatmap on Twitter. It looks to have some really great features. The clustering &amp; annotation features alone look amazing!!! This seemed like the perfect excuse to play with it a bit.
+We&rsquo;re going to use the same data as before."/>
 
 <meta property="og:title" content="A Modern Day Comparison of 3 Heat Map Packages - Part 3" />
 <meta property="og:description" content="This is Part 3 in my series comparing different heat map packages. You can find Part 1 here &amp; Part 2 here.
-In this part, I’m going to look at ComplexHeatmap. I think I first came across ComplexHeatmap on Twitter. It looks to have some really great features. The clustering &amp; annotation features alone look amazing!!! This seemed like the perfect excuse to play with it a bit.
-We’re going to use the same data as before." />
+In this part, I&rsquo;m going to look at ComplexHeatmap. I think I first came across ComplexHeatmap on Twitter. It looks to have some really great features. The clustering &amp; annotation features alone look amazing!!! This seemed like the perfect excuse to play with it a bit.
+We&rsquo;re going to use the same data as before." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://sapo83.github.io/posts/heatmap_comparision_part3/" />
 <meta property="og:image" content="https://sapo83.github.io/99"/>
@@ -83,7 +83,7 @@ We’re going to use the same data as before." />
         
 <div class="flex-container">
     <aside role="complementary">
-        Sun Jan 24, 2021 &#183; 917 words
+        Sun Jan 24, 2021 &#183; 951 words
         <div class="tag-container">
             
             
@@ -138,20 +138,18 @@ We’re going to use the same data as before." />
     </aside>
     <hr />
     <article role="article">
-        
-
-
-<p>This is Part 3 in my series comparing different heat map packages. You can find Part 1 <a href="https://sapo83.github.io/posts/heatmap_comparison_part1/">here</a> &amp; Part 2 <a href="https://sapo83.github.io/posts/heatmap_comparison_part2/">here</a>.</p>
-<p>In this part, I’m going to look at <strong>ComplexHeatmap</strong>. I think I first came across <strong>ComplexHeatmap</strong> on Twitter. It looks to have some really great features. The clustering &amp; annotation features alone look amazing!!! This seemed like the perfect excuse to play with it a bit.</p>
-<p>We’re going to use the same data as <a href="https://github.com/rfordatascience/tidytuesday/blob/master/data/2018/2018-04-02/us_avg_tuition.xlsx?raw=true">before</a>. A lot of the data wrangling will look similar to <a href="https://sapo83.github.io/posts/heatmap_comparison_part1/">Part 1</a>.</p>
-<p>Let’s start by loading the libraries we need. In case you are unfamiliar with how to download a package from Github, I included the command in the following code chunk.</p>
-<pre class="r"><code># devtools::install_github(&quot;jokergoo/ComplexHeatmap&quot;)
-library(tidyverse)
-library(RColorBrewer)
-library(ComplexHeatmap)</code></pre>
-<p>We’re going to read in our data similar to before, using <code>read_csv()</code>.</p>
-<pre class="r"><code>df = read_csv(&quot;https://raw.githubusercontent.com/sapo83/TidyTuesday/master/2018/TT.20180403/us.avg.tuition.noCR.csv&quot;)</code></pre>
-<pre><code>## 
+        <p>This is Part 3 in my series comparing different heat map packages. You can find Part 1 <a href="https://sapo83.github.io/posts/heatmap_comparison_part1/">here</a> &amp; Part 2 <a href="https://sapo83.github.io/posts/heatmap_comparison_part2/">here</a>.</p>
+<p>In this part, I&rsquo;m going to look at <a href="https://jokergoo.github.io/ComplexHeatmap-reference/book/">ComplexHeatmap</a>. I think I first came across <a href="https://jokergoo.github.io/ComplexHeatmap-reference/book/">ComplexHeatmap</a> on Twitter. It looks to have some really great features. The clustering &amp; annotation features alone look amazing!!! This seemed like the perfect excuse to play with it a bit.</p>
+<p>We&rsquo;re going to use the same data as  <a href="https://github.com/rfordatascience/tidytuesday/blob/master/data/2018/2018-04-02/us_avg_tuition.xlsx?raw=true">before</a>. A lot of the data wrangling will look similar to <a href="https://sapo83.github.io/posts/heatmap_comparison_part1/">Part 1</a>.</p>
+<p>ComplexHeatmap is not available on CRAN. You&rsquo;ll need to download it from Github. The easiest way to do this is with the <strong>devtools</strong> package. You can find the code below.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">devtools<span style="color:#f92672">::</span><span style="color:#a6e22e">install_github</span>(<span style="color:#e6db74">&#34;jokergoo/ComplexHeatmap&#34;</span>)
+</code></pre></div><p>Now that installation is taken care of, let&rsquo;s start by loading the libraries we need.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(tidyverse)
+<span style="color:#a6e22e">library</span>(RColorBrewer)
+<span style="color:#a6e22e">library</span>(ComplexHeatmap)
+</code></pre></div><p>We&rsquo;re going to read in our data similar to before, using <code>read_csv()</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">df <span style="color:#f92672">=</span> <span style="color:#a6e22e">read_csv</span>(<span style="color:#e6db74">&#34;https://raw.githubusercontent.com/sapo83/TidyTuesday/master/2018/TT.20180403/us.avg.tuition.noCR.csv&#34;</span>)
+</code></pre></div><pre><code>## 
 ## ── Column specification ────────────────────────────────────────────────────────
 ## cols(
 ##   State = col_character(),
@@ -167,9 +165,9 @@ library(ComplexHeatmap)</code></pre>
 ##   `2013-14` = col_character(),
 ##   `2014-15` = col_character(),
 ##   `2015-16` = col_character()
-## )</code></pre>
-<pre class="r"><code>head(df)</code></pre>
-<pre><code>## # A tibble: 6 x 13
+## )
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">head</span>(df)
+</code></pre></div><pre><code>## # A tibble: 6 x 13
 ##   State `2004-05` `2005-06` `2006-07` `2007-08` `2008-09` `2009-10` `2010-11`
 ##   &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;    
 ## 1 Alab… $5,683    $5,841    $5,753    $6,008    $6,475    $7,189    $8,071   
@@ -179,12 +177,12 @@ library(ComplexHeatmap)</code></pre>
 ## 5 Cali… $5,286    $5,528    $5,335    $5,672    $5,898    $7,259    $8,194   
 ## 6 Colo… $4,704    $5,407    $5,596    $6,227    $6,284    $6,948    $7,748   
 ## # … with 5 more variables: `2011-12` &lt;chr&gt;, `2012-13` &lt;chr&gt;, `2013-14` &lt;chr&gt;,
-## #   `2014-15` &lt;chr&gt;, `2015-16` &lt;chr&gt;</code></pre>
-<p>Next we need to remove the dollar signs &amp; commas from the numeric values.</p>
-<pre class="r"><code>df = as.data.frame(lapply(df, function (x) {gsub(&quot;[$,]&quot;, &quot;&quot;, x)}))
+## #   `2014-15` &lt;chr&gt;, `2015-16` &lt;chr&gt;
+</code></pre><p>Next we need to remove the dollar signs &amp; commas from the numeric values.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">df <span style="color:#f92672">=</span> <span style="color:#a6e22e">as.data.frame</span>(<span style="color:#a6e22e">lapply</span>(df, <span style="color:#a6e22e">function </span>(x) {<span style="color:#a6e22e">gsub</span>(<span style="color:#e6db74">&#34;[$,]&#34;</span>, <span style="color:#e6db74">&#34;&#34;</span>, x)}))
 
-head(df)</code></pre>
-<pre><code>##        State X2004.05 X2005.06 X2006.07 X2007.08 X2008.09 X2009.10 X2010.11
+<span style="color:#a6e22e">head</span>(df)
+</code></pre></div><pre><code>##        State X2004.05 X2005.06 X2006.07 X2007.08 X2008.09 X2009.10 X2010.11
 ## 1    Alabama     5683     5841     5753     6008     6475     7189     8071
 ## 2     Alaska     4328     4633     4919     5070     5075     5455     5759
 ## 3    Arizona     5138     5416     5481     5682     6058     7263     8840
@@ -197,14 +195,14 @@ head(df)</code></pre>
 ## 3     9967    10134    10296    10414    10646
 ## 4     7029     7287     7408     7606     7867
 ## 5     9436     9361     9274     9187     9270
-## 6     8316     8793     9293     9299     9748</code></pre>
-<p>Similar to <strong>pheatmap</strong>, <strong>ComplexHeatmap</strong> requires a numeric matrix. I will use <code>as.numeric()</code> inside <code>sapply()</code> to make sure each column except the first is numeric. I’ll wrap this in <code>as.matrix()</code> to return a new matrix object (<code>df_num</code>). We will assign the state names as row names to our new object.</p>
-<pre class="r"><code>df_num = as.matrix(sapply(df[, 2:13], as.numeric))  
+## 6     8316     8793     9293     9299     9748
+</code></pre><p>Similar to <strong>pheatmap</strong>, <a href="https://jokergoo.github.io/ComplexHeatmap-reference/book/">ComplexHeatmap</a> requires a numeric matrix. I will use <code>as.numeric()</code> inside <code>sapply()</code> to make sure each column except the first is numeric. I&rsquo;ll wrap this in <code>as.matrix()</code> to return a new matrix object (<code>df_num</code>). We will assign the state names as row names to our new object.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">df_num <span style="color:#f92672">=</span> <span style="color:#a6e22e">as.matrix</span>(<span style="color:#a6e22e">sapply</span>(df[, <span style="color:#ae81ff">2</span><span style="color:#f92672">:</span><span style="color:#ae81ff">13</span>], as.numeric))  
 
-rownames(df_num) = df$State
+<span style="color:#a6e22e">rownames</span>(df_num) <span style="color:#f92672">=</span> df<span style="color:#f92672">$</span>State
 
-head(df)</code></pre>
-<pre><code>##        State X2004.05 X2005.06 X2006.07 X2007.08 X2008.09 X2009.10 X2010.11
+<span style="color:#a6e22e">head</span>(df)
+</code></pre></div><pre><code>##        State X2004.05 X2005.06 X2006.07 X2007.08 X2008.09 X2009.10 X2010.11
 ## 1    Alabama     5683     5841     5753     6008     6475     7189     8071
 ## 2     Alaska     4328     4633     4919     5070     5075     5455     5759
 ## 3    Arizona     5138     5416     5481     5682     6058     7263     8840
@@ -217,32 +215,33 @@ head(df)</code></pre>
 ## 3     9967    10134    10296    10414    10646
 ## 4     7029     7287     7408     7606     7867
 ## 5     9436     9361     9274     9187     9270
-## 6     8316     8793     9293     9299     9748</code></pre>
-<p>Finally before we plot our data, we’ll clean up our column names. Two nested <code>gsub()</code> commands remove the prefix “X” and replace the dash (“-”) with “-20” to make both values 4 digit years.</p>
-<pre class="r"><code>colnames(df_num) = gsub(&quot;[.]&quot;, &quot;-20&quot;, gsub(&quot;X&quot;, &quot;&quot;, colnames(df_num)))</code></pre>
-<p>Now let’s plot our heat map!</p>
-<pre class="r"><code>Heatmap(df_num)</code></pre>
-<p><img src="/posts/heatmap_comparision_part3_files/figure-html/OG_heatmap-1.png" width="672" /></p>
-<p>Ok! Not bad! First thing I’d like to change is the order of the columns. I’m going to add <code>column_order = sort(colnames(df_num))</code> to reverse the order of the columns. When you use <code>column_order</code> column clustering is set to FALSE. This also removes the column dendrogram we see in the original version.</p>
-<pre class="r"><code>Heatmap(df_num,
-        column_order = sort(colnames(df_num)))</code></pre>
-<p><img src="/posts/heatmap_comparision_part3_files/figure-html/1_heatmap-1.png" width="672" />
-Next I want to apply the same color palette &amp; change the title of the legend. <code>col = rev(brewer.pal(11, "RdYlBu"))</code> uses the same palette as the previous 2 plots. <code>name = "Tuition"</code> renames our legend to a more descriptive title.</p>
-<pre class="r"><code>Heatmap(df_num,
-        column_order = sort(colnames(df_num)),
-        col = rev(brewer.pal(11, &quot;RdYlBu&quot;)),
-        name = &quot;Tuition&quot;)</code></pre>
-<p><img src="/posts/heatmap_comparision_part3_files/figure-html/2_heatmap-1.png" width="672" />
-Last of all, I want to change the size of each tile. I’ll use <code>width</code> &amp; <code>height</code> to control that.</p>
-<pre class="r"><code>Heatmap(df_num,
-        column_order = sort(colnames(df_num)),
-        col = rev(brewer.pal(11, &quot;RdYlBu&quot;)),
-        name = &quot;Tuition&quot;,
-        width = ncol(df_num)*unit(5, &quot;mm&quot;), 
-        height = nrow(df_num)*unit(5, &quot;mm&quot;))</code></pre>
-<p><img src="/posts/heatmap_comparision_part3_files/figure-html/final_heatmap-1.png" width="672" />
-This looks very similar to the clustered heat map we made in <a href="https://sapo83.github.io/posts/heatmap_comparison_part2/">Part 2</a> with <strong>pheatmap</strong>. It’s interesting to note the slight differences in clustering between the two packages. I would assume they are using slightly different clustering algorithms.</p>
-<p>I have barely scratched the surface on <strong>ComplexHeatmap</strong>. I think the main takeaway from each of these 3 packages is that each one fits certain use cases. Hopefully this has helped you identify which one would suit your needs best. Feel free to reach out with any questions/comments/concerns via <a href="https://twitter.com/sapo83">Twitter</a> or using one of the other methods on my <a href="https://sapo83.github.io/contact/">contact page</a>. Thanks for reading!</p>
+## 6     8316     8793     9293     9299     9748
+</code></pre><p>Finally before we plot our data, we&rsquo;ll clean up our column names. Two nested <code>gsub()</code> commands remove the prefix &ldquo;X&rdquo; and replace the dash (&quot;-&quot;) with &ldquo;-20&rdquo; to make both values 4 digit years.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">colnames</span>(df_num) <span style="color:#f92672">=</span> <span style="color:#a6e22e">gsub</span>(<span style="color:#e6db74">&#34;[.]&#34;</span>, <span style="color:#e6db74">&#34;-20&#34;</span>, <span style="color:#a6e22e">gsub</span>(<span style="color:#e6db74">&#34;X&#34;</span>, <span style="color:#e6db74">&#34;&#34;</span>, <span style="color:#a6e22e">colnames</span>(df_num)))
+</code></pre></div><p>Now let&rsquo;s plot our heat map!</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">Heatmap</span>(df_num)
+</code></pre></div><p><img src="https://sapo83.github.io/posts/heatmap_comparision_part3/index_files/figure-html/OG_heatmap-1.png" width="672" /></p>
+<p>Ok! Not bad! First thing I&rsquo;d like to change is the order of the columns. I&rsquo;m going to add <code>column_order = sort(colnames(df_num))</code> to reverse the order of the columns. When you use <code>column_order</code> column clustering is set to FALSE. This also removes the column dendrogram we see in the original version.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">Heatmap</span>(df_num,
+        column_order <span style="color:#f92672">=</span> <span style="color:#a6e22e">sort</span>(<span style="color:#a6e22e">colnames</span>(df_num)))
+</code></pre></div><p><img src="https://sapo83.github.io/posts/heatmap_comparision_part3/index_files/figure-html/1_heatmap-1.png" width="672" />
+Next I want to apply the same color palette &amp; change the title of the legend. <code>col = rev(brewer.pal(11, &quot;RdYlBu&quot;))</code> uses the same palette as the previous 2 plots. <code>name = &quot;Tuition&quot;</code> renames our legend to a more descriptive title.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">Heatmap</span>(df_num,
+        column_order <span style="color:#f92672">=</span> <span style="color:#a6e22e">sort</span>(<span style="color:#a6e22e">colnames</span>(df_num)),
+        col <span style="color:#f92672">=</span> <span style="color:#a6e22e">rev</span>(<span style="color:#a6e22e">brewer.pal</span>(<span style="color:#ae81ff">11</span>, <span style="color:#e6db74">&#34;RdYlBu&#34;</span>)),
+        name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Tuition&#34;</span>)
+</code></pre></div><p><img src="https://sapo83.github.io/posts/heatmap_comparision_part3/index_files/figure-html/2_heatmap-1.png" width="672" />
+Last of all, I want to change the size of each tile. I&rsquo;ll use <code>width</code> &amp; <code>height</code> to control that.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">Heatmap</span>(df_num,
+        column_order <span style="color:#f92672">=</span> <span style="color:#a6e22e">sort</span>(<span style="color:#a6e22e">colnames</span>(df_num)),
+        col <span style="color:#f92672">=</span> <span style="color:#a6e22e">rev</span>(<span style="color:#a6e22e">brewer.pal</span>(<span style="color:#ae81ff">11</span>, <span style="color:#e6db74">&#34;RdYlBu&#34;</span>)),
+        name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Tuition&#34;</span>,
+        width <span style="color:#f92672">=</span> <span style="color:#a6e22e">ncol</span>(df_num)<span style="color:#f92672">*</span><span style="color:#a6e22e">unit</span>(<span style="color:#ae81ff">3.5</span>, <span style="color:#e6db74">&#34;mm&#34;</span>), 
+        height <span style="color:#f92672">=</span> <span style="color:#a6e22e">nrow</span>(df_num)<span style="color:#f92672">*</span><span style="color:#a6e22e">unit</span>(<span style="color:#ae81ff">3.5</span>, <span style="color:#e6db74">&#34;mm&#34;</span>))
+</code></pre></div><p><img src="https://sapo83.github.io/posts/heatmap_comparision_part3/index_files/figure-html/final_heatmap-1.png" width="672" />
+This looks very similar to the clustered heat map we made in <a href="https://sapo83.github.io/posts/heatmap_comparison_part2/">Part 2</a> with <a href="https://cran.r-project.org/web/packages/pheatmap/pheatmap.pdf">pheatmap</a>. It&rsquo;s interesting to note the slight differences in clustering between the two packages. I would assume they are using slightly different clustering algorithms.</p>
+<p>I have barely scratched the surface on <a href="https://jokergoo.github.io/ComplexHeatmap-reference/book/">ComplexHeatmap</a>. At some point, I&rsquo;d like to come back with a different data set &amp; use this package a bit more!</p>
+<p>I think the main takeaway from each of these 3 packages is that each one fits certain use cases. Hopefully this has helped you identify which one would suit your needs best. Feel free to reach out with any questions/comments/concerns via <a href="https://twitter.com/sapo83">Twitter</a> or using one of the other methods on my <a href="https://sapo83.github.io/contact/">contact page</a>. Thanks for reading!</p>
 
     </article>
 </div>

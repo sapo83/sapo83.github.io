@@ -13,8 +13,8 @@
       <pubDate>Thu, 14 Jan 2021 00:00:00 +0000</pubDate>
       
       <guid>https://sapo83.github.io/posts/heatmap_comparison_part1/</guid>
-      <description>I’m going to use some early data from the first week of #TidyTuesday to do a comparison of different methods for making a heat map. The three packages I’m going to compare are ggplot2, pheatmap, &amp;amp; ComplexHeatmap.
-The first package I’m going to look at is ggplot2, an integral part of the tidyverse.* You can create a heat map in ggplot2 using geom_tile(). One of the pros of making any type of plot in ggplot2 is it plays well with other types of plots made in ggplot2.</description>
+      <description>I&amp;rsquo;m going to use some early data from the first week of #TidyTuesday to do a comparison of different methods for making a heat map. The three packages I&amp;rsquo;m going to compare are ggplot2, pheatmap, &amp;amp; ComplexHeatmap.
+The first package I&amp;rsquo;m going to look at is ggplot2, an integral part of the tidyverse.** You can create a heat map in ggplot2 using geom_tile(). One of the pros of making any type of plot in ggplot2 is it plays well with other types of plots made in ggplot2.</description>
     </item>
     
   </channel>

@@ -14,8 +14,8 @@
       
       <guid>https://sapo83.github.io/posts/heatmap_comparision_part3/</guid>
       <description>This is Part 3 in my series comparing different heat map packages. You can find Part 1 here &amp;amp; Part 2 here.
-In this part, I’m going to look at ComplexHeatmap. I think I first came across ComplexHeatmap on Twitter. It looks to have some really great features. The clustering &amp;amp; annotation features alone look amazing!!! This seemed like the perfect excuse to play with it a bit.
-We’re going to use the same data as before.</description>
+In this part, I&amp;rsquo;m going to look at ComplexHeatmap. I think I first came across ComplexHeatmap on Twitter. It looks to have some really great features. The clustering &amp;amp; annotation features alone look amazing!!! This seemed like the perfect excuse to play with it a bit.
+We&amp;rsquo;re going to use the same data as before.</description>
     </item>
     
     <item>
@@ -24,8 +24,8 @@ We’re going to use the same data as before.</description>
       <pubDate>Tue, 19 Jan 2021 00:00:00 +0000</pubDate>
       
       <guid>https://sapo83.github.io/posts/heatmap_comparison_part2/</guid>
-      <description>We’re back to look at another heat map package! This is Part 2 of a 3 part series. You can find Part 1 here.
-As someone who learned R using primarily the tidyverse, pheatmap had a bit of a learning curve. As a grad student, I was looking for an easier way to make a heat map with clustered data. I was trying to make heat maps for about 50 clusters in a programmatic way.</description>
+      <description>We&amp;rsquo;re back to look at another heat map package! This is Part 2 of a 3 part series. You can find Part 1 here.
+As someone who learned R using primarily the tidyverse, pheatmap had a bit of a learning curve. As a grad student, I was looking for an easier way to make a heat map with clustered data. I was trying to make heat maps for about 50 gene clusters in a programmatic way.</description>
     </item>
     
     <item>
@@ -34,8 +34,8 @@ As someone who learned R using primarily the tidyverse, pheatmap had a bit of a 
       <pubDate>Thu, 14 Jan 2021 00:00:00 +0000</pubDate>
       
       <guid>https://sapo83.github.io/posts/heatmap_comparison_part1/</guid>
-      <description>I’m going to use some early data from the first week of #TidyTuesday to do a comparison of different methods for making a heat map. The three packages I’m going to compare are ggplot2, pheatmap, &amp;amp; ComplexHeatmap.
-The first package I’m going to look at is ggplot2, an integral part of the tidyverse.* You can create a heat map in ggplot2 using geom_tile(). One of the pros of making any type of plot in ggplot2 is it plays well with other types of plots made in ggplot2.</description>
+      <description>I&amp;rsquo;m going to use some early data from the first week of #TidyTuesday to do a comparison of different methods for making a heat map. The three packages I&amp;rsquo;m going to compare are ggplot2, pheatmap, &amp;amp; ComplexHeatmap.
+The first package I&amp;rsquo;m going to look at is ggplot2, an integral part of the tidyverse.** You can create a heat map in ggplot2 using geom_tile(). One of the pros of making any type of plot in ggplot2 is it plays well with other types of plots made in ggplot2.</description>
     </item>
     
   </channel>

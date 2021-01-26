@@ -52,7 +52,7 @@ We&rsquo;re going to use the same data as before."/>
 In this part, I&rsquo;m going to look at ComplexHeatmap. I think I first came across ComplexHeatmap on Twitter. It looks to have some really great features. The clustering &amp; annotation features alone look amazing!!! This seemed like the perfect excuse to play with it a bit.
 We&rsquo;re going to use the same data as before." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://sapo83.github.io/posts/heatmap_comparision_part3/" />
+<meta property="og:url" content="https://sapo83.github.io/posts/heatmap_comparison_part3/" />
 <meta property="og:image" content="https://sapo83.github.io/99"/>
 <meta property="article:published_time" content="2021-01-24T00:00:00+00:00" />
 <meta property="article:modified_time" content="2021-01-24T00:00:00+00:00" /><meta property="og:site_name" content="Sarah Codes" />
@@ -220,17 +220,17 @@ We&rsquo;re going to use the same data as before." />
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">colnames</span>(df_num) <span style="color:#f92672">=</span> <span style="color:#a6e22e">gsub</span>(<span style="color:#e6db74">&#34;[.]&#34;</span>, <span style="color:#e6db74">&#34;-20&#34;</span>, <span style="color:#a6e22e">gsub</span>(<span style="color:#e6db74">&#34;X&#34;</span>, <span style="color:#e6db74">&#34;&#34;</span>, <span style="color:#a6e22e">colnames</span>(df_num)))
 </code></pre></div><p>Now let&rsquo;s plot our heat map!</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">Heatmap</span>(df_num)
-</code></pre></div><p><img src="https://sapo83.github.io/posts/heatmap_comparision_part3/index_files/figure-html/OG_heatmap-1.png" width="672" /></p>
+</code></pre></div><p><img src="https://sapo83.github.io/posts/heatmap_comparison_part3/index_files/figure-html/OG_heatmap-1.png" width="672" /></p>
 <p>Ok! Not bad! First thing I&rsquo;d like to change is the order of the columns. I&rsquo;m going to add <code>column_order = sort(colnames(df_num))</code> to reverse the order of the columns. When you use <code>column_order</code> column clustering is set to FALSE. This also removes the column dendrogram we see in the original version.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">Heatmap</span>(df_num,
         column_order <span style="color:#f92672">=</span> <span style="color:#a6e22e">sort</span>(<span style="color:#a6e22e">colnames</span>(df_num)))
-</code></pre></div><p><img src="https://sapo83.github.io/posts/heatmap_comparision_part3/index_files/figure-html/1_heatmap-1.png" width="672" />
+</code></pre></div><p><img src="https://sapo83.github.io/posts/heatmap_comparison_part3/index_files/figure-html/1_heatmap-1.png" width="672" />
 Next I want to apply the same color palette &amp; change the title of the legend. <code>col = rev(brewer.pal(11, &quot;RdYlBu&quot;))</code> uses the same palette as the previous 2 plots. <code>name = &quot;Tuition&quot;</code> renames our legend to a more descriptive title.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">Heatmap</span>(df_num,
         column_order <span style="color:#f92672">=</span> <span style="color:#a6e22e">sort</span>(<span style="color:#a6e22e">colnames</span>(df_num)),
         col <span style="color:#f92672">=</span> <span style="color:#a6e22e">rev</span>(<span style="color:#a6e22e">brewer.pal</span>(<span style="color:#ae81ff">11</span>, <span style="color:#e6db74">&#34;RdYlBu&#34;</span>)),
         name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Tuition&#34;</span>)
-</code></pre></div><p><img src="https://sapo83.github.io/posts/heatmap_comparision_part3/index_files/figure-html/2_heatmap-1.png" width="672" />
+</code></pre></div><p><img src="https://sapo83.github.io/posts/heatmap_comparison_part3/index_files/figure-html/2_heatmap-1.png" width="672" />
 Last of all, I want to change the size of each tile. I&rsquo;ll use <code>width</code> &amp; <code>height</code> to control that.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">Heatmap</span>(df_num,
         column_order <span style="color:#f92672">=</span> <span style="color:#a6e22e">sort</span>(<span style="color:#a6e22e">colnames</span>(df_num)),
@@ -238,7 +238,7 @@ Last of all, I want to change the size of each tile. I&rsquo;ll use <code>width<
         name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Tuition&#34;</span>,
         width <span style="color:#f92672">=</span> <span style="color:#a6e22e">ncol</span>(df_num)<span style="color:#f92672">*</span><span style="color:#a6e22e">unit</span>(<span style="color:#ae81ff">3.5</span>, <span style="color:#e6db74">&#34;mm&#34;</span>), 
         height <span style="color:#f92672">=</span> <span style="color:#a6e22e">nrow</span>(df_num)<span style="color:#f92672">*</span><span style="color:#a6e22e">unit</span>(<span style="color:#ae81ff">3.5</span>, <span style="color:#e6db74">&#34;mm&#34;</span>))
-</code></pre></div><p><img src="https://sapo83.github.io/posts/heatmap_comparision_part3/index_files/figure-html/final_heatmap-1.png" width="672" />
+</code></pre></div><p><img src="https://sapo83.github.io/posts/heatmap_comparison_part3/index_files/figure-html/final_heatmap-1.png" width="672" />
 This looks very similar to the clustered heat map we made in <a href="https://sapo83.github.io/posts/heatmap_comparison_part2/">Part 2</a> with <a href="https://cran.r-project.org/web/packages/pheatmap/pheatmap.pdf">pheatmap</a>. It&rsquo;s interesting to note the slight differences in clustering between the two packages. I would assume they are using slightly different clustering algorithms.</p>
 <p>I have barely scratched the surface on <a href="https://jokergoo.github.io/ComplexHeatmap-reference/book/">ComplexHeatmap</a>. At some point, I&rsquo;d like to come back with a different data set &amp; use this package a bit more!</p>
 <p>I think the main takeaway from each of these 3 packages is that each one fits certain use cases. Hopefully this has helped you identify which one would suit your needs best. Feel free to reach out with any questions/comments/concerns via <a href="https://twitter.com/sapo83">Twitter</a> or using one of the other methods on my <a href="https://sapo83.github.io/contact/">contact page</a>. Thanks for reading!</p>

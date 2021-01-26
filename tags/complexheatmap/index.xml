@@ -9,10 +9,10 @@
     <lastBuildDate>Sun, 24 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://sapo83.github.io/tags/complexheatmap/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>A Modern Day Comparison of 3 Heat Map Packages - Part 3</title>
-      <link>https://sapo83.github.io/posts/heatmap_comparision_part3/</link>
+      <link>https://sapo83.github.io/posts/heatmap_comparison_part3/</link>
       <pubDate>Sun, 24 Jan 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://sapo83.github.io/posts/heatmap_comparision_part3/</guid>
+      <guid>https://sapo83.github.io/posts/heatmap_comparison_part3/</guid>
       <description>This is Part 3 in my series comparing different heat map packages. You can find Part 1 here &amp;amp; Part 2 here.
 In this part, I&amp;rsquo;m going to look at ComplexHeatmap. I think I first came across ComplexHeatmap on Twitter. It looks to have some really great features. The clustering &amp;amp; annotation features alone look amazing!!! This seemed like the perfect excuse to play with it a bit.
 We&amp;rsquo;re going to use the same data as before.</description>

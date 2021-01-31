@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+
+<meta name="description" content="Sarah Codes.">
+<title>
+    A Few Notes On How I Got This Website Up &amp; Running - Sarah Codes
+</title>
+
+
+<link rel="shortcut icon" href="/computer.png">
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.min.32608b5974b2d1ed4868d4d480fbdc1db0c7a7bad37d9bc0f2c3b5d50e90fa6a.css" integrity="sha256-MmCLWXSy0e1IaNTUgPvcHbDHp7rTfZvA8sO11Q6Q&#43;mo=" crossorigin="anonymous" media="screen">
+
+
+
+
+  
+
+
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Didact+Gothic">
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://sapo83.github.io/99"/>
+
+<meta name="twitter:title" content="A Few Notes On How I Got This Website Up &amp; Running"/>
+<meta name="twitter:description" content="I&rsquo;ve wanted to put a website together for awhile. I&rsquo;ve never really made it a priority. I started thinking about it more when I came across Nick Strayer&rsquo;s datadrivencv. My original idea was to host a more detailed version of my CV as a website. Since I can never do anything half way I decided to do a full website, blog included! So here we are. I&rsquo;m not going to do a line for line &ldquo;how I made my website&rdquo; kind of post."/>
+
+<meta property="og:title" content="A Few Notes On How I Got This Website Up &amp; Running" />
+<meta property="og:description" content="I&rsquo;ve wanted to put a website together for awhile. I&rsquo;ve never really made it a priority. I started thinking about it more when I came across Nick Strayer&rsquo;s datadrivencv. My original idea was to host a more detailed version of my CV as a website. Since I can never do anything half way I decided to do a full website, blog included! So here we are. I&rsquo;m not going to do a line for line &ldquo;how I made my website&rdquo; kind of post." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sapo83.github.io/posts/how-i-got-this-website-up-running/" />
+<meta property="og:image" content="https://sapo83.github.io/99"/>
+<meta property="article:published_time" content="2021-01-28T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-01-28T00:00:00+00:00" /><meta property="og:site_name" content="Sarah Codes" />
+
+
+
+
+    
+
+    
+    
+    
+    <title>
+        
+        A Few Notes On How I Got This Website Up &amp; Running
+        
+    </title>
+</head>
+
+<body>
+    
+    
+    <header class="wrap flex-container">
+        <h1>A Few Notes On How I Got This Website Up &amp; Running</h1>
+    </header>
+    
+    <main class="wrap">
+        
+<div class="flex-container">
+    <aside role="complementary">
+        Thu Jan 28, 2021 &#183; 996 words
+        <div class="tag-container">
+            
+            
+            <span class="tag">
+                <a href="/tags/hugo/">
+                    hugo
+                </a>
+            </span>
+            
+            
+            
+            <span class="tag">
+                <a href="/tags/blogdown/">
+                    blogdown
+                </a>
+            </span>
+            
+            
+            
+            <span class="tag">
+                <a href="/tags/website/">
+                    website
+                </a>
+            </span>
+            
+            
+            
+            <span class="tag">
+                <a href="/tags/work-flow/">
+                    work flow
+                </a>
+            </span>
+            
+            
+            
+            <span class="tag">
+                <a href="/tags/rmarkdown/">
+                    Rmarkdown
+                </a>
+            </span>
+            
+            
+        </div>
+    </aside>
+    <hr />
+    <article role="article">
+        <p>I&rsquo;ve wanted to put a website together for awhile. I&rsquo;ve never really made it a priority. I started thinking about it more when I came across Nick Strayer&rsquo;s <a href="http://nickstrayer.me/datadrivencv/">datadrivencv</a>. My original idea was to host a more detailed version of my CV as a website. Since I can never do anything half way I decided to do a full website, blog included! So here we are. I&rsquo;m not going to do a line for line &ldquo;how I made my website&rdquo; kind of post. There are already plenty of those. I&rsquo;m going to do a high level overview with some hints &amp; tips I picked up along the way.</p>
+<p>Very first thing I did was go straight to the source: the <a href="https://bookdown.org/yihui/blogdown/">blogdown</a> book. This helped me get the basics started. I skimmed some parts &amp; then decided to dive right in because that&rsquo;s how I do it. You&rsquo;ll soon figure out I love to jump right in without reading the documentation. It&rsquo;s a particular quirk of mine. So let&rsquo;s get into it!</p>
+<center><iframe src="https://giphy.com/embed/fTne319LfO6Noh80qD" width="50%" height="426" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/moodman-fox-dive-diving-fTne319LfO6Noh80qD"></p></center>
+
+<h3 id="pick-a-theme" class="anchor-link"><a href="#pick-a-theme">Pick a theme<span class="pilcrow">&nbsp;¶</span></a></h3>
+<p>You need to pick a Hugo theme. Those can be found <a href="https://themes.gohugo.io/">here</a>. I spent waaaaay too much on this. I want everything to be pretty so I tend to overthink aesthetic choices. I had an idea in my mind about the general style I wanted. There seem to be 2 basic designs: all one page that you can scroll through/link to different sections or each section is a separate page. I wanted the separate page style so that narrowed down my choices. From there, I knew I wanted something more on the minimalist side. I actually tried two or three other themes before I settled on the current one: <a href="https://github.com/victoriadrake/hugo-theme-sam">Call me Sam</a>.</p>
+<p>I did not read any documentation for this theme (Are we noticing a trend?). Therefore, I had some issues with things not working &ldquo;correctly&rdquo;. <a href="https://stackoverflow.com/questions/59505588/sass-files-conversion-in-blogdown-sam-theme">This Stack Overflow question</a> answered a very specific question. I could have also avoided this issue if I had at least skimmed the readme. My suggestion is to read the Readme of the theme you&rsquo;ve chosen!</p>
+<p>Now that you&rsquo;ve chosen a theme (and read the readme), start a new project in R &amp; run</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">blogdown<span style="color:#f92672">::</span><span style="color:#a6e22e">new_site</span>(theme <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;victoriadrake/hugo-theme-sam&#39;</span>)
+</code></pre></div><p>This will set up all you need for the website, uses the theme you&rsquo;ve selected, etc &amp; then previews it for you. From here, you can start tweaking your theme. I&rsquo;m not going to go into a ton of detail here. The most significant changes I made were changing the background color &amp; highlight color. I also messed around with the syntax highlighting in code chunks. I would experiment with all these changes before you add any actual content. I deleted the whole project &amp; restarted multiple times before I got to where I was ready to add my own content.</p>
+
+<h3 id="adding-your-own-content" class="anchor-link"><a href="#adding-your-own-content">Adding your own content<span class="pilcrow">&nbsp;¶</span></a></h3>
+<p>This is where things get a bit messy. I tried a couple different ways to add new posts. I finally landed on using the &ldquo;New Post&rdquo; option in the &ldquo;Addins&rdquo; menu. A helpful tip I picked up along the way is that you can set a project level &ldquo;.Rprofile&rdquo;. You can use this to set defaults for each new post. This works better than my previous method of cutting &amp; pasting the YAML at the beginning of each file. The command below allows you to edit the &ldquo;.Rprofile&rdquo; file associated with your project.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">file.edit</span>(<span style="color:#e6db74">&#39;~/.Rprofile&#39;</span>)
+</code></pre></div><p>Another thing I&rsquo;ve done is kind of bypass blogdown all together. I will fully admit I don&rsquo;t understand the internals of how Hugo &amp; blogdown work together. I did figure out that to get the syntax highlighting &amp; pages to render the way I wanted it made more sense to use *.Rmarkdown files. <a href="https://drmowinckels.io/blog/2020-05-25-changing-you-blogdown-workflow/">This blog post</a> started me down the road of using a bit more Hugo &amp; less blogdown. The general idea is I run <code>hugo server --disableFastRender</code> in the terminal. I edit my <code>index.Rmarkdown</code> file, knit it &amp; then I can see the changes on <code>http://localhost:1313/</code> in my browser.</p>
+
+<h3 id="page-bundles" class="anchor-link"><a href="#page-bundles">Page bundles<span class="pilcrow">&nbsp;¶</span></a></h3>
+<p>There are different ways to organize everything. I recommend using page bundles. They use a specific structure where everything related to a post is in a single directory. I found this easier to understand than some of the other methos. My understanding is that page bundles are a relatively new feature. Alison Hill has a great post about page bundles <a href="https://alison.rbind.io/post/2019-02-21-hugo-page-bundles/">here</a> if you want to dig more into it.</p>
+
+<h3 id="push-to-github" class="anchor-link"><a href="#push-to-github">Push to Github<span class="pilcrow">&nbsp;¶</span></a></h3>
+<p>I&rsquo;m using Github to host this page for right now. This may change in the future but it works for right now. There are a ton of tutorials on how to get your web page up &amp; running so I won&rsquo;t go into it here. I will, however, point out that the only directory you need to push to Github is <code>/public</code>. That was not immediately clear to me.</p>
+<p>Depending on how complex you want to make this, you could use Github issues as a way to keep track of ideas. I&rsquo;ve been doing that to keep the list of things I potentially want to do with this site all in one place. I&rsquo;ve also been using branches to add things to the website. This can be a great way to practice pull requests/branches/issues/etc. on Github if that&rsquo;s something that you need to work on!</p>
+
+<h3 id="publications-page" class="anchor-link"><a href="#publications-page">Publications page<span class="pilcrow">&nbsp;¶</span></a></h3>
+<p>I wanted to take this opportunity to highlight Nick Strayer&rsquo;s <a href="http://nickstrayer.me/datadrivencv/">datadrivencv</a> R package. The basic premise is you keep your data in Google sheets &amp; pull from there to create your CV. I had originally tried to pull/wrangle the data for the Publications page from both Google Scholar &amp; using my ORCID. It just never seemed to work quite right! I finally decided to put all my publication data into a Google Sheet &amp; pull it from there, similar to Nick&rsquo;s package. Thanks for the idea, Nick!</p>
+<p>If you have any specific questions, I&rsquo;d love to hear from you! Feel free to reach out to me on <a href="https://twitter.com/sapo83">Twitter</a>.</p>
+
+    </article>
+</div>
+
+
+        
+<nav role="navigation" class="flex-container bottom-menu">
+    
+<hr />
+<p>
+
+
+    
+        <a href="/posts">back</a>
+        
+            &#183;
+        
+    
+
+    
+        
+            <a href="/posts">posts</a>
+        
+    
+    
+        
+            &#183; 
+            <a href="/pubs">publications</a>
+        
+            &#183; 
+            <a href="/about">about</a>
+        
+            &#183; 
+            <a href="/contact">contact</a>
+        
+    
+    &#183; 
+    <a href="/">
+        main
+    </a>
+
+</p>
+</nav>
+
+    </main>
+    
+    <footer class="flex-container footer">Copyright © 2021. Sarah Entwistle. All rights reserved.
+</footer>
+    
+    
+</body>
+
+</html>

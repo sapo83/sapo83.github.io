@@ -79,7 +79,7 @@
         
 <div class="flex-container">
     <aside role="complementary">
-        Thu Jan 28, 2021 &#183; 996 words
+        Thu Jan 28, 2021 &#183; 1021 words
         <div class="tag-container">
             
             
@@ -140,7 +140,7 @@
 <h3 id="adding-your-own-content" class="anchor-link"><a href="#adding-your-own-content">Adding your own content<span class="pilcrow">&nbsp;¶</span></a></h3>
 <p>This is where things get a bit messy. I tried a couple different ways to add new posts. I finally landed on using the &ldquo;New Post&rdquo; option in the &ldquo;Addins&rdquo; menu. A helpful tip I picked up along the way is that you can set a project level &ldquo;.Rprofile&rdquo;. You can use this to set defaults for each new post. This works better than my previous method of cutting &amp; pasting the YAML at the beginning of each file. The command below allows you to edit the &ldquo;.Rprofile&rdquo; file associated with your project.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">file.edit</span>(<span style="color:#e6db74">&#39;~/.Rprofile&#39;</span>)
-</code></pre></div><p>Another thing I&rsquo;ve done is kind of bypass blogdown all together. I will fully admit I don&rsquo;t understand the internals of how Hugo &amp; blogdown work together. I did figure out that to get the syntax highlighting &amp; pages to render the way I wanted it made more sense to use *.Rmarkdown files. <a href="https://drmowinckels.io/blog/2020-05-25-changing-you-blogdown-workflow/">This blog post</a> started me down the road of using a bit more Hugo &amp; less blogdown. The general idea is I run <code>hugo server --disableFastRender</code> in the terminal. I edit my <code>index.Rmarkdown</code> file, knit it &amp; then I can see the changes on <code>http://localhost:1313/</code> in my browser.</p>
+</code></pre></div><p>Another thing I&rsquo;ve done is kind of bypass blogdown all together. I will fully admit I don&rsquo;t understand the internals of how Hugo &amp; blogdown work together. I did figure out that to get the syntax highlighting &amp; pages to render the way I wanted it made more sense to use *.Rmarkdown files. <a href="https://drmowinckels.io/blog/2020-05-25-changing-you-blogdown-workflow/">This blog post</a> started me down the road of using a bit more Hugo &amp; less blogdown. The general idea is I run <code>hugo server --disableFastRender</code> in the terminal. I edit my <code>index.Rmarkdown</code> file, knit it &amp; then I can see the changes on <code>http://localhost:1313/</code> in my browser. Once I&rsquo;ve made all the changes I want, I kill the Hugo server running &amp; then run <code>hugo</code> in the terminal to build the website.</p>
 
 <h3 id="page-bundles" class="anchor-link"><a href="#page-bundles">Page bundles<span class="pilcrow">&nbsp;¶</span></a></h3>
 <p>There are different ways to organize everything. I recommend using page bundles. They use a specific structure where everything related to a post is in a single directory. I found this easier to understand than some of the other methos. My understanding is that page bundles are a relatively new feature. Alison Hill has a great post about page bundles <a href="https://alison.rbind.io/post/2019-02-21-hugo-page-bundles/">here</a> if you want to dig more into it.</p>

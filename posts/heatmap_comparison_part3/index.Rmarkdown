@@ -1,0 +1,108 @@
+---
+title: A Modern Day Comparison of 3 Heat Map Packages - Part 3
+author: Sarah Entwistle
+date: '2021-01-24'
+slug: heatmap_comparison_part3
+categories:
+  - R
+tags:
+  - TidyTuesday
+  - heat map
+  - tuition
+  - part 3
+  - ComplexHeatmap
+showDate: yes
+---
+
+This is Part 3 in my series comparing different heat map packages. You can find Part 1 [here](https://sapo83.github.io/posts/heatmap_comparison_part1/) & Part 2 [here](https://sapo83.github.io/posts/heatmap_comparison_part2/).
+
+In this part, I’m going to look at [ComplexHeatmap](https://jokergoo.github.io/ComplexHeatmap-reference/book/). I think I first came across [ComplexHeatmap](https://jokergoo.github.io/ComplexHeatmap-reference/book/) on Twitter. It looks to have some really great features. The clustering & annotation features alone look amazing!!! This seemed like the perfect excuse to play with it a bit.
+
+We’re going to use the same data as before. A lot of the data wrangling will look similar to Part 1.
+
+[ComplexHeatmap](https://jokergoo.github.io/ComplexHeatmap-reference/book/) is not available on CRAN. You’ll need to download it from Github. The easiest way to do this is with the devtools package. You can find the code below.
+
+```{r, message = FALSE}
+devtools::install_github("jokergoo/ComplexHeatmap")
+```
+
+Now that installation is taken care of, let’s start by loading the libraries we need.
+
+```{r, message = FALSE}
+library(tidyverse)
+library(RColorBrewer)
+library(ComplexHeatmap)
+```
+
+We’re going to read in our data similar to before, using `read_csv()`.
+
+```{r}
+df = read_csv("https://raw.githubusercontent.com/sapo83/TidyTuesday/master/2018/TT.20180403/us.avg.tuition.noCR.csv")
+
+head(df)
+```
+
+Next we need to remove the dollar signs & commas from the numeric values.
+
+```{r}
+df = as.data.frame(lapply(df, function (x) {gsub("[$,]", "", x)}))
+
+head(df)
+```
+
+Similar to [pheatmap](https://cran.r-project.org/web/packages/pheatmap/pheatmap.pdf), [ComplexHeatmap](https://jokergoo.github.io/ComplexHeatmap-reference/book/) requires a numeric matrix. I will use `as.numeric()` inside `sapply()` to make sure each column except the first is numeric. I’ll wrap this in `as.matrix()` to return a new matrix object (`df_num`). We will assign the state names as row names to our new object.
+
+```{r}
+df_num = as.matrix(sapply(df[, 2:13], as.numeric))  
+
+rownames(df_num) = df$State
+
+head(df)
+```
+
+Finally before we plot our data, we’ll clean up our column names. Two nested `gsub()` commands remove the prefix “X” and replace the dash ("-") with “-20” to make both values 4 digit years.
+
+```{r}
+colnames(df_num) = gsub("[.]", "-20", gsub("X", "", colnames(df_num)))
+```
+
+Now let’s plot our heat map!
+
+```{r}
+Heatmap(df_num)
+```
+
+Ok! Not bad! First thing I’d like to change is the order of the columns. I’m going to add `column_order = sort(colnames(df_num))` to reverse the order of the columns. When you use `column_order` column clustering is set to FALSE. This also removes the column dendrogram we see in the original version.
+
+```{r}
+Heatmap(df_num,
+        column_order = sort(colnames(df_num)))
+```
+
+Next I want to apply the same color palette & change the title of the legend. `col = rev(brewer.pal(11, "RdYlBu"))` uses the same palette as the previous 2 plots. `name = "Tuition"` renames our legend to a more descriptive title.
+
+```{r}
+Heatmap(df_num,
+        column_order = sort(colnames(df_num)),
+        col = rev(brewer.pal(11, "RdYlBu")),
+        name = "Tuition")
+```
+
+Last of all, I want to change the size of each tile. I’ll use `width` & `height` to control that.
+
+```{r, fig.height = 8}
+Heatmap(df_num,
+        column_order = sort(colnames(df_num)),
+        col = rev(brewer.pal(11, "RdYlBu")),
+        name = "Tuition",
+        width = ncol(df_num)*unit(3.5, "mm"), 
+        height = nrow(df_num)*unit(3.5, "mm"))
+```
+
+This looks very similar to the clustered heat map we made in [Part 2](https://sapo83.github.io/posts/heatmap_comparison_part2/) with [pheatmap](https://cran.r-project.org/web/packages/pheatmap/pheatmap.pdf). It’s interesting to note the slight differences in clustering between the two packages. I would assume they are using slightly different clustering algorithms.
+
+I have barely scratched the surface on [ComplexHeatmap](https://jokergoo.github.io/ComplexHeatmap-reference/book/). At some point, I’d like to come back with a different data set & use this package a bit more!
+
+I think the main takeaway from each of these 3 packages is that each one fits certain use cases. Hopefully this has helped you identify which one would suit your needs best.
+
+Feel free to reach out with any questions/comments/concerns via [Twitter](https://twitter.com/sapo83) or using one of the other methods on my [contact](https://sapo83.github.io/contact/) page. Thanks for reading!

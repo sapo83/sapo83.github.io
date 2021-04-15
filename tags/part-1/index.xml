@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>part 1 on Sarah Codes</title>
+    <link>https://sapo83.github.io/tags/part-1/</link>
+    <description>Recent content in part 1 on Sarah Codes</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 14 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://sapo83.github.io/tags/part-1/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>A Modern Day Comparison of 3 Heat Map Packages - Part 1</title>
+      <link>https://sapo83.github.io/posts/heatmap_comparison_part1/</link>
+      <pubDate>Thu, 14 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://sapo83.github.io/posts/heatmap_comparison_part1/</guid>
+      <description>I’m going to use some early data from the first week of #TidyTuesday to do a comparison of different methods for making a heat map. The three packages I’m going to compare are ggplot2, pheatmap, &amp;amp; ComplexHeatmap.
+The first package I’m going to look at is ggplot2, an integral part of the tidyverse.** You can create a heat map in ggplot2 using geom_tile(). One of the pros of making any type of plot in ggplot2 is it plays well with other types of plots made in ggplot2.</description>
+    </item>
+    
+  </channel>
+</rss>

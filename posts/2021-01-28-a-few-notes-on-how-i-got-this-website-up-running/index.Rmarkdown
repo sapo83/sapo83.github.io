@@ -1,0 +1,56 @@
+---
+title: A Few Notes On How I Got This Website Up & Running
+author: Sarah Entwistle
+date: '2021-01-28'
+slug: [how-i-got-this-website-up-running]
+categories: [R]
+tags:
+  - hugo
+  - blogdown
+  - website
+  - work flow
+  - Rmarkdown
+showDate: yes
+self_contained: false
+---
+
+I’ve wanted to put a website together for awhile. I’ve never really made it a priority. I started thinking about it more when I came across Nick Strayer’s [datadrivencv](http://nickstrayer.me/datadrivencv/). My original idea was to host a more detailed version of my CV as a website. Since I can never do anything half way I decided to do a full website, blog included! So here we are. I’m not going to do a line for line “how I made my website” kind of post. There are already plenty of those. I’m going to do a high level overview with some hints & tips I picked up along the way.
+
+Very first thing I did was go straight to the source: the [blogdown](https://bookdown.org/yihui/blogdown/) book. This helped me get the basics started. I skimmed some parts & then decided to dive right in because that’s how I do it. You’ll soon figure out I love to jump right in without reading the documentation. It’s a particular quirk of mine. So let’s get into it!
+
+<center><iframe src="https://giphy.com/embed/fTne319LfO6Noh80qD" width="50%" height="426" frameBorder="0" class="giphy-embed" allowFullScreen data-external="1"></iframe></center>
+
+# Pick a theme
+You need to pick a Hugo theme. Those can be found [here](https://themes.gohugo.io/). I spent waaaaay too much on this. I want everything to be pretty so I tend to overthink aesthetic choices. I had an idea in my mind about the general style I wanted. There seem to be 2 basic designs: all one page that you can scroll through/link to different sections or each section is a separate page. I wanted the separate page style so that narrowed down my choices. From there, I knew I wanted something more on the minimalist side. I actually tried two or three other themes before I settled on the current one: [Call me Sam](https://github.com/victoriadrake/hugo-theme-sam).
+
+I did not read any documentation for this theme (Are we noticing a trend?). Therefore, I had some issues with things not working “correctly”. [This Stack Overflow question](https://stackoverflow.com/questions/59505588/sass-files-conversion-in-blogdown-sam-theme) answered a very specific question. I could have also avoided this issue if I had at least skimmed the readme. My suggestion is to read the Readme of the theme you’ve chosen!
+
+Now that you’ve chosen a theme (and read the readme), start a new project in R & run
+
+```{r, eval = FALSE}
+blogdown::new_site(theme = 'victoriadrake/hugo-theme-sam')
+```
+
+This will set up all you need for the website, uses the theme you’ve selected, etc & then previews it for you. From here, you can start tweaking your theme. I’m not going to go into a ton of detail here. The most significant changes I made were changing the background color & highlight color. I also messed around with the syntax highlighting in code chunks. I would experiment with all these changes before you add any actual content. I deleted the whole project & restarted multiple times before I got to where I was ready to add my own content.
+
+# Adding your own content
+This is where things get a bit messy. I tried a couple different ways to add new posts. I finally landed on using the “New Post” option in the “Addins” menu. A helpful tip I picked up along the way is that you can set a project level “.Rprofile”. You can use this to set defaults for each new post. This works better than my previous method of cutting & pasting the YAML at the beginning of each file. The command below allows you to edit the “.Rprofile” file associated with your project.
+
+```{r, eval = FALSE}
+file.edit('./.Rprofile')
+```
+
+Another thing I’ve done is kind of bypass blogdown all together. I will fully admit I don’t understand the internals of how Hugo & blogdown work together. I did figure out that to get the syntax highlighting & pages to render the way I wanted it made more sense to use *.Rmarkdown files. [This blog post](https://drmowinckels.io/blog/2020-05-25-changing-you-blogdown-workflow/) started me down the road of using a bit more Hugo & less blogdown. The general idea is I run `hugo server --disableFastRender` in the terminal. I edit my `index.Rmarkdown` file, knit it & then I can see the changes on `http://localhost:1313/` in my browser. Once I’ve made all the changes I want, I kill the Hugo server running & then run `hugo` in the terminal to build the website.
+
+# Page bundles
+There are different ways to organize everything. I recommend using page bundles. They use a specific structure where everything related to a post is in a single directory. I found this easier to understand than some of the other methods. My understanding is that page bundles are a relatively new feature. Alison Hill has a great post about page bundles [here](https://alison.rbind.io/post/2019-02-21-hugo-page-bundles/) if you want to dig more into it.
+
+# Push to Github
+I’m using Github to host this page for right now. This may change in the future but it works for right now. There are a ton of tutorials on how to get your web page up & running so I won’t go into it here. I will, however, point out that the only directory you need to push to Github is `/public`. That was not immediately clear to me.
+
+Depending on how complex you want to make this, you could use Github issues as a way to keep track of ideas. I’ve been doing that to keep the list of things I potentially want to do with this site all in one place. I’ve also been using branches to add things to the website. This can be a great way to practice pull requests/branches/issues/etc. on Github if that’s something that you need to work on!
+
+# Publications page
+I wanted to take this opportunity to highlight Nick Strayer’s [datadrivencv](http://nickstrayer.me/datadrivencv/) R package. The basic premise is you keep your data in Google sheets & pull from there to create your CV. I had originally tried to pull/wrangle the data for the Publications page from both Google Scholar & using my ORCID. It just never seemed to work quite right! I finally decided to put all my publication data into a Google Sheet & pull it from there, similar to Nick’s package. Thanks for the idea, Nick!
+
+If you have any specific questions, I’d love to hear from you! Feel free to reach out to me on [Twitter](https://twitter.com/sapo83).

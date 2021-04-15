@@ -1,0 +1,53 @@
+---
+date: "2018-02-13T13:42:49-05:00"
+title: Publications
+---
+
+  
+# 2020
+
+```{r, results="asis", echo=FALSE, message=FALSE}
+# library(googlesheets4)
+library(tidyverse)
+library(glue)
+
+googlesheets4::gs4_deauth()
+
+
+url = "https://docs.google.com/spreadsheets/d/1xENdw54gaRPc39vnq433aLn_5LU8gz95Gcp4ZfInncY/edit#gid=0"
+full_df = googlesheets4::read_sheet(url)
+
+full_df = full_df %>% 
+  janitor::clean_names() %>% 
+  mutate(author = gsub("[.]", "", author)) %>%
+  mutate(author = gsub('Entwistle S', '<span style="color: #E6C047">Entwistle S</span>', author)) %>%
+  mutate(type = if_else(type == "abstract", "**", "")) 
+
+full_df %>%
+  filter(grepl("^2020", date)) %>%
+  glue_data("{author}. _{title}_. {journal}. [Link]({pub_med}) {type}
+
+            ")
+```
+
+# 2019
+
+```{r, results="asis", echo=FALSE, message=FALSE}
+full_df %>%
+  filter(grepl("^2019", date)) %>%
+  glue_data("{author}. _{title}_. {journal}. [Link]({pub_med}) {type}
+
+            ")
+```
+
+# 2018
+
+```{r, results="asis", echo=FALSE, message=FALSE}
+full_df %>%
+  filter(grepl("^2018", date)) %>%
+  glue_data("{author}. _{title}_. {journal}. [Link]({pub_med}) {type}
+
+            ")
+```
+
+** signifies abstract

@@ -1,0 +1,93 @@
+---
+title: A Modern Day Comparison of 3 Heat Map Packages - Part 2
+author: Sarah Entwistle
+date: '2021-01-19'
+slug: heatmap_comparison_part2
+categories:
+  - R
+tags:
+  - TidyTuesday
+  - heat map
+  - tuition
+  - tidyverse
+  - pheatmap
+  - part 2
+showDate: yes
+---
+
+We’re back to look at another heat map package! This is Part 2 of a 3 part series. You can find Part 1 [here](https://sapo83.github.io/posts/heatmap_comparison_part1/).
+
+As someone who learned R using primarily the [tidyverse](https://www.tidyverse.org/), [pheatmap](https://cran.r-project.org/web/packages/pheatmap/pheatmap.pdf) had a bit of a learning curve. As a grad student, I was looking for an easier way to make a heat map with clustered data. I was trying to make heat maps for about 50 gene clusters in a programmatic way. [ggplot2](https://ggplot2.tidyverse.org/) wasn’t cutting it for me so I landed here. The end result was this [figure](https://pubmed.ncbi.nlm.nih.gov/30425054/#&gid=article-figures&pid=figure-5-uid-4) & this [figure](https://pubmed.ncbi.nlm.nih.gov/30425054/#&gid=article-figures&pid=figure-6-uid-5), both published in this [paper](https://pubmed.ncbi.nlm.nih.gov/30425054/).
+
+We’re going to use the same data as before. A lot of the data wrangling will look similar to [Part 1](https://sapo83.github.io/posts/heatmap_comparison_part1/).
+
+First, we’re going to load the libraries will be using.
+
+```{r, message = FALSE}
+library(tidyverse)
+library(RColorBrewer)
+library(pheatmap)
+```
+
+Next, we’re going to read in the file using `read_csv()` from the [tidyverse](https://www.tidyverse.org/) package.
+
+```{r}
+df = read_csv("https://raw.githubusercontent.com/sapo83/TidyTuesday/master/2018/TT.20180403/us.avg.tuition.noCR.csv")
+
+df
+```
+Next, we’re going to use `gsub()` to replace all the dollar signs & commas. `lapply()` allows us to apply this to every column in our data frame.
+
+```{r}
+df = as.data.frame(lapply(df, function (x) {gsub("[$,]", "", x)}))
+
+head(df)
+```
+Looks good so far!
+
+One of the quirks of [pheatmap](https://cran.r-project.org/web/packages/pheatmap/pheatmap.pdf) is that it will only accept a matrix with numeric values. This caused me the most trouble when I first started using this package. To handle this, we’ll apply (using `sapply()`) the `as.numeric()` function to each column except the first column. We’ll then assign this as a matrix (using `as.matrix()`) to a new object (`df_num`). Our row names for our new object are the states. We set the row names for `df_num` using the first column from our original data frame (`df`).
+
+```{r}
+df_num = as.matrix(sapply(df[, 2:13], as.numeric))  
+
+rownames(df_num) = df$State
+
+head(df)
+```
+
+One last thing before we get to plotting our heat map: column names! The column names need to be cleaned up a bit.
+
+We’ll used two nested `gsub()` commands to remove the “X” from the beginning of the string & replace the “-” with “-20”.
+
+```{r}
+colnames(df_num) = gsub("[.]", "-20", gsub("X", "", colnames(df_num)))
+```
+
+Now, let’s plot our heat map!
+
+```{r}
+pheatmap(df_num)
+```
+
+First thing I want to fix is the column order. I don’t want them clustered. I want to see them in order by date. We can add `cluster_cols = FALSE` to take care of that. I’ll leave the clustering on for the rows (states). With this clustering we can see which states have similar patterns in their tuition changes. This may help us see particular trends in certain regions or identify outlier(s) in a specific area.
+
+I also want to add a color scheme to it. I’m going to stick with the color palette from [Part 1](https://sapo83.github.io/posts/heatmap_comparison_part1/).
+
+```{r}
+pheatmap(df_num, 
+         color = colorRampPalette(rev(brewer.pal(11, "RdYlBu")))(100), 
+         cluster_cols = FALSE)
+```
+
+Next I want to change the cell size & remove the cell border. I’ll use `NA` to remove the cell border completely. I prefer squares in a heat map as opposed to rectangles so I’ll set the cell width & cell height to match.
+
+```{r, fig.height = 8}
+pheatmap(df_num, 
+         color = colorRampPalette(rev(brewer.pal(11, "RdYlBu")))(100), 
+         cluster_cols = FALSE,
+         cellwidth = 10, 
+         cellheight = 10,
+         border_color = NA)
+```
+
+This is fairly similar to the plot in [Part 1](https://sapo83.github.io/posts/heatmap_comparison_part1/) so I’m going to stop here. Any questions/comments/concerns, I’d be happy to hear from you. You can reach out to me via [Twitter](https://twitter.com/sapo83) or using one of the other methods on my [contact](https://sapo83.github.io/contact/) page. Stay tuned for [Part 3](https://sapo83.github.io/posts/heatmap_comparison_part3/)!

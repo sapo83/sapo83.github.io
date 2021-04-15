@@ -1,0 +1,19 @@
+---
+date: "2018-02-13T13:42:49-05:00"
+title: Contact
+---
+
+### A myriad of ways to get in touch with me!
+
+```{r load_packages, message=FALSE, warning=FALSE, include=FALSE} 
+# library(fontawesome)
+library(icons)
+
+# fa("envelope-open-text", fill = "#E6C047", height = "2em")
+```
+### <a href="mailto:sentwistle13@gmail.com">`r icon_style(fontawesome("envelope-open-text"), color = "#E6C047", scale = 2)`</a> Email
+### <a href="https://twitter.com/sapo83?lang=en">`r icon_style(fontawesome("twitter"), color = "#E6C047", scale = 2)`</a> Twitter
+### <a href="https://github.com/sapo83">`r icon_style(fontawesome("github-alt"), color = "#E6C047", scale = 2)`</a> Github
+### <a href="https://orcid.org/0000-0002-9322-1288">`r icon_style(fontawesome("orcid"), color = "#E6C047", scale = 2)`</a> ORCID
+### <a href="https://scholar.google.com/citations?hl=en&user=fosQdskAAAAJ">`r icon_style(academicons("google-scholar"), color = "#E6C047", scale = 2)`</a> Google Scholar
+### <a href="https://www.linkedin.com/in/sarah-entwistle-3a9417142/">`r icon_style(fontawesome("linkedin"), color = "#E6C047", scale = 2)`</a> LinkedIn

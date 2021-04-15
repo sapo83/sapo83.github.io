@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>work flow on Sarah Codes</title>
+    <link>https://sapo83.github.io/tags/work-flow/</link>
+    <description>Recent content in work flow on Sarah Codes</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 28 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://sapo83.github.io/tags/work-flow/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>A Few Notes On How I Got This Website Up &amp; Running</title>
+      <link>https://sapo83.github.io/posts/2021-01-28-a-few-notes-on-how-i-got-this-website-up-running/</link>
+      <pubDate>Thu, 28 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://sapo83.github.io/posts/2021-01-28-a-few-notes-on-how-i-got-this-website-up-running/</guid>
+      <description>I’ve wanted to put a website together for awhile. I’ve never really made it a priority. I started thinking about it more when I came across Nick Strayer’s datadrivencv. My original idea was to host a more detailed version of my CV as a website. Since I can never do anything half way I decided to do a full website, blog included! So here we are. I’m not going to do a line for line “how I made my website” kind of post.</description>
+    </item>
+    
+  </channel>
+</rss>

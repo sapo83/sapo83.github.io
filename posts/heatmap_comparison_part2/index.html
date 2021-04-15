@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+
+<meta name="description" content="Sarah Codes">
+<title>
+    A Modern Day Comparison of 3 Heat Map Packages - Part 2 - Sarah Codes
+</title>
+
+
+<link rel="shortcut icon" href="/computer.png">
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.min.98d38cb044c5237b66dfee009fe7b294f7aef9bfa969d37d8dab599728c6da0b.css" integrity="sha256-mNOMsETFI3tm3&#43;4An&#43;eylPeu&#43;b&#43;padN9jatZlyjG2gs=" crossorigin="anonymous" media="screen">
+
+
+
+
+  
+
+
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Didact+Gothic">
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://sapo83.github.io/116"/>
+
+<meta name="twitter:title" content="A Modern Day Comparison of 3 Heat Map Packages - Part 2"/>
+<meta name="twitter:description" content="We’re back to look at another heat map package! This is Part 2 of a 3 part series. You can find Part 1 here.
+As someone who learned R using primarily the tidyverse, pheatmap had a bit of a learning curve. As a grad student, I was looking for an easier way to make a heat map with clustered data. I was trying to make heat maps for about 50 gene clusters in a programmatic way."/>
+
+<meta property="og:title" content="A Modern Day Comparison of 3 Heat Map Packages - Part 2" />
+<meta property="og:description" content="We’re back to look at another heat map package! This is Part 2 of a 3 part series. You can find Part 1 here.
+As someone who learned R using primarily the tidyverse, pheatmap had a bit of a learning curve. As a grad student, I was looking for an easier way to make a heat map with clustered data. I was trying to make heat maps for about 50 gene clusters in a programmatic way." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sapo83.github.io/posts/heatmap_comparison_part2/" />
+<meta property="og:image" content="https://sapo83.github.io/116"/>
+<meta property="article:published_time" content="2021-01-19T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-01-19T00:00:00+00:00" /><meta property="og:site_name" content="Sarah Codes" />
+
+
+    
+
+    
+    
+    
+    <title>
+        
+        A Modern Day Comparison of 3 Heat Map Packages - Part 2
+        
+    </title>
+</head>
+
+<body>
+    
+    
+    <header class="wrap flex-container">
+        <h1>A Modern Day Comparison of 3 Heat Map Packages - Part 2</h1>
+    </header>
+    
+    <main class="wrap">
+        
+<div class="flex-container">
+    <aside role="complementary">
+        Tue Jan 19, 2021 &#183; 1007 words
+        <div class="tag-container">
+            
+            
+            <span class="tag">
+                <a href="/tags/tidytuesday/">
+                    TidyTuesday
+                </a>
+            </span>
+            
+            
+            
+            <span class="tag">
+                <a href="/tags/heat-map/">
+                    heat map
+                </a>
+            </span>
+            
+            
+            
+            <span class="tag">
+                <a href="/tags/tuition/">
+                    tuition
+                </a>
+            </span>
+            
+            
+            
+            <span class="tag">
+                <a href="/tags/tidyverse/">
+                    tidyverse
+                </a>
+            </span>
+            
+            
+            
+            <span class="tag">
+                <a href="/tags/pheatmap/">
+                    pheatmap
+                </a>
+            </span>
+            
+            
+            
+            <span class="tag">
+                <a href="/tags/part-2/">
+                    part 2
+                </a>
+            </span>
+            
+            
+        </div>
+    </aside>
+    <hr />
+    <article role="article">
+        <p>We’re back to look at another heat map package! This is Part 2 of a 3 part series. You can find Part 1 <a href="https://sapo83.github.io/posts/heatmap_comparison_part1/">here</a>.</p>
+<p>As someone who learned R using primarily the <a href="https://www.tidyverse.org/">tidyverse</a>, <a href="https://cran.r-project.org/web/packages/pheatmap/pheatmap.pdf">pheatmap</a> had a bit of a learning curve. As a grad student, I was looking for an easier way to make a heat map with clustered data. I was trying to make heat maps for about 50 gene clusters in a programmatic way. <a href="https://ggplot2.tidyverse.org/">ggplot2</a> wasn’t cutting it for me so I landed here. The end result was this <a href="https://pubmed.ncbi.nlm.nih.gov/30425054/#&amp;gid=article-figures&amp;pid=figure-5-uid-4">figure</a> &amp; this <a href="https://pubmed.ncbi.nlm.nih.gov/30425054/#&amp;gid=article-figures&amp;pid=figure-6-uid-5">figure</a>, both published in this <a href="https://pubmed.ncbi.nlm.nih.gov/30425054/">paper</a>.</p>
+<p>We’re going to use the same data as before. A lot of the data wrangling will look similar to <a href="https://sapo83.github.io/posts/heatmap_comparison_part1/">Part 1</a>.</p>
+<p>First, we’re going to load the libraries will be using.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(tidyverse)
+<span style="color:#a6e22e">library</span>(RColorBrewer)
+<span style="color:#a6e22e">library</span>(pheatmap)
+</code></pre></div><p>Next, we’re going to read in the file using <code>read_csv()</code> from the <a href="https://www.tidyverse.org/">tidyverse</a> package.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">df <span style="color:#f92672">=</span> <span style="color:#a6e22e">read_csv</span>(<span style="color:#e6db74">&#34;https://raw.githubusercontent.com/sapo83/TidyTuesday/master/2018/TT.20180403/us.avg.tuition.noCR.csv&#34;</span>)
+</code></pre></div><pre><code>## 
+## ── Column specification ────────────────────────────────────────────────────────
+## cols(
+##   State = col_character(),
+##   `2004-05` = col_character(),
+##   `2005-06` = col_character(),
+##   `2006-07` = col_character(),
+##   `2007-08` = col_character(),
+##   `2008-09` = col_character(),
+##   `2009-10` = col_character(),
+##   `2010-11` = col_character(),
+##   `2011-12` = col_character(),
+##   `2012-13` = col_character(),
+##   `2013-14` = col_character(),
+##   `2014-15` = col_character(),
+##   `2015-16` = col_character()
+## )
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">df
+</code></pre></div><pre><code>## # A tibble: 50 x 13
+##    State   `2004-05` `2005-06` `2006-07` `2007-08` `2008-09` `2009-10` `2010-11`
+##    &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;    
+##  1 Alabama $5,683    $5,841    $5,753    $6,008    $6,475    $7,189    $8,071   
+##  2 Alaska  $4,328    $4,633    $4,919    $5,070    $5,075    $5,455    $5,759   
+##  3 Arizona $5,138    $5,416    $5,481    $5,682    $6,058    $7,263    $8,840   
+##  4 Arkans… $5,772    $6,082    $6,232    $6,415    $6,417    $6,627    $6,901   
+##  5 Califo… $5,286    $5,528    $5,335    $5,672    $5,898    $7,259    $8,194   
+##  6 Colora… $4,704    $5,407    $5,596    $6,227    $6,284    $6,948    $7,748   
+##  7 Connec… $7,984    $8,249    $8,368    $8,678    $8,721    $9,371    $9,827   
+##  8 Delawa… $8,353    $8,611    $8,682    $8,946    $8,995    $9,987    $10,534  
+##  9 Florida $3,848    $3,924    $3,888    $3,879    $4,150    $4,783    $5,511   
+## 10 Georgia $4,298    $4,492    $4,584    $4,790    $4,831    $5,550    $6,428   
+## # … with 40 more rows, and 5 more variables: 2011-12 &lt;chr&gt;, 2012-13 &lt;chr&gt;,
+## #   2013-14 &lt;chr&gt;, 2014-15 &lt;chr&gt;, 2015-16 &lt;chr&gt;
+</code></pre><p>Next, we’re going to use <code>gsub()</code> to replace all the dollar signs &amp; commas. <code>lapply()</code> allows us to apply this to every column in our data frame.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">df <span style="color:#f92672">=</span> <span style="color:#a6e22e">as.data.frame</span>(<span style="color:#a6e22e">lapply</span>(df, <span style="color:#a6e22e">function </span>(x) {<span style="color:#a6e22e">gsub</span>(<span style="color:#e6db74">&#34;[$,]&#34;</span>, <span style="color:#e6db74">&#34;&#34;</span>, x)}))
+
+<span style="color:#a6e22e">head</span>(df)
+</code></pre></div><pre><code>##        State X2004.05 X2005.06 X2006.07 X2007.08 X2008.09 X2009.10 X2010.11
+## 1    Alabama     5683     5841     5753     6008     6475     7189     8071
+## 2     Alaska     4328     4633     4919     5070     5075     5455     5759
+## 3    Arizona     5138     5416     5481     5682     6058     7263     8840
+## 4   Arkansas     5772     6082     6232     6415     6417     6627     6901
+## 5 California     5286     5528     5335     5672     5898     7259     8194
+## 6   Colorado     4704     5407     5596     6227     6284     6948     7748
+##   X2011.12 X2012.13 X2013.14 X2014.15 X2015.16
+## 1     8452     9098     9359     9496     9751
+## 2     5762     6026     6012     6149     6571
+## 3     9967    10134    10296    10414    10646
+## 4     7029     7287     7408     7606     7867
+## 5     9436     9361     9274     9187     9270
+## 6     8316     8793     9293     9299     9748
+</code></pre><p>Looks good so far!</p>
+<p>One of the quirks of <a href="https://cran.r-project.org/web/packages/pheatmap/pheatmap.pdf">pheatmap</a> is that it will only accept a matrix with numeric values. This caused me the most trouble when I first started using this package. To handle this, we’ll apply (using <code>sapply()</code>) the <code>as.numeric()</code> function to each column except the first column. We’ll then assign this as a matrix (using <code>as.matrix()</code>) to a new object (<code>df_num</code>). Our row names for our new object are the states. We set the row names for <code>df_num</code> using the first column from our original data frame (<code>df</code>).</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">df_num <span style="color:#f92672">=</span> <span style="color:#a6e22e">as.matrix</span>(<span style="color:#a6e22e">sapply</span>(df[, <span style="color:#ae81ff">2</span><span style="color:#f92672">:</span><span style="color:#ae81ff">13</span>], as.numeric))  
+
+<span style="color:#a6e22e">rownames</span>(df_num) <span style="color:#f92672">=</span> df<span style="color:#f92672">$</span>State
+
+<span style="color:#a6e22e">head</span>(df)
+</code></pre></div><pre><code>##        State X2004.05 X2005.06 X2006.07 X2007.08 X2008.09 X2009.10 X2010.11
+## 1    Alabama     5683     5841     5753     6008     6475     7189     8071
+## 2     Alaska     4328     4633     4919     5070     5075     5455     5759
+## 3    Arizona     5138     5416     5481     5682     6058     7263     8840
+## 4   Arkansas     5772     6082     6232     6415     6417     6627     6901
+## 5 California     5286     5528     5335     5672     5898     7259     8194
+## 6   Colorado     4704     5407     5596     6227     6284     6948     7748
+##   X2011.12 X2012.13 X2013.14 X2014.15 X2015.16
+## 1     8452     9098     9359     9496     9751
+## 2     5762     6026     6012     6149     6571
+## 3     9967    10134    10296    10414    10646
+## 4     7029     7287     7408     7606     7867
+## 5     9436     9361     9274     9187     9270
+## 6     8316     8793     9293     9299     9748
+</code></pre><p>One last thing before we get to plotting our heat map: column names! The column names need to be cleaned up a bit.</p>
+<p>We’ll used two nested <code>gsub()</code> commands to remove the “X” from the beginning of the string &amp; replace the “-” with “-20”.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">colnames</span>(df_num) <span style="color:#f92672">=</span> <span style="color:#a6e22e">gsub</span>(<span style="color:#e6db74">&#34;[.]&#34;</span>, <span style="color:#e6db74">&#34;-20&#34;</span>, <span style="color:#a6e22e">gsub</span>(<span style="color:#e6db74">&#34;X&#34;</span>, <span style="color:#e6db74">&#34;&#34;</span>, <span style="color:#a6e22e">colnames</span>(df_num)))
+</code></pre></div><p>Now, let’s plot our heat map!</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">pheatmap</span>(df_num)
+</code></pre></div><p><img src="https://sapo83.github.io/posts/heatmap_comparison_part2/index_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>First thing I want to fix is the column order. I don’t want them clustered. I want to see them in order by date. We can add <code>cluster_cols = FALSE</code> to take care of that. I’ll leave the clustering on for the rows (states). With this clustering we can see which states have similar patterns in their tuition changes. This may help us see particular trends in certain regions or identify outlier(s) in a specific area.</p>
+<p>I also want to add a color scheme to it. I’m going to stick with the color palette from <a href="https://sapo83.github.io/posts/heatmap_comparison_part1/">Part 1</a>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">pheatmap</span>(df_num, 
+         color <span style="color:#f92672">=</span> <span style="color:#a6e22e">colorRampPalette</span>(<span style="color:#a6e22e">rev</span>(<span style="color:#a6e22e">brewer.pal</span>(<span style="color:#ae81ff">11</span>, <span style="color:#e6db74">&#34;RdYlBu&#34;</span>)))(<span style="color:#ae81ff">100</span>), 
+         cluster_cols <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>)
+</code></pre></div><p><img src="https://sapo83.github.io/posts/heatmap_comparison_part2/index_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>Next I want to change the cell size &amp; remove the cell border. I’ll use <code>NA</code> to remove the cell border completely. I prefer squares in a heat map as opposed to rectangles so I’ll set the cell width &amp; cell height to match.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">pheatmap</span>(df_num, 
+         color <span style="color:#f92672">=</span> <span style="color:#a6e22e">colorRampPalette</span>(<span style="color:#a6e22e">rev</span>(<span style="color:#a6e22e">brewer.pal</span>(<span style="color:#ae81ff">11</span>, <span style="color:#e6db74">&#34;RdYlBu&#34;</span>)))(<span style="color:#ae81ff">100</span>), 
+         cluster_cols <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>,
+         cellwidth <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>, 
+         cellheight <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>,
+         border_color <span style="color:#f92672">=</span> <span style="color:#66d9ef">NA</span>)
+</code></pre></div><p><img src="https://sapo83.github.io/posts/heatmap_comparison_part2/index_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>This is fairly similar to the plot in <a href="https://sapo83.github.io/posts/heatmap_comparison_part1/">Part 1</a> so I’m going to stop here. Any questions/comments/concerns, I’d be happy to hear from you. You can reach out to me via <a href="https://twitter.com/sapo83">Twitter</a> or using one of the other methods on my <a href="https://sapo83.github.io/contact/">contact</a> page. Stay tuned for <a href="https://sapo83.github.io/posts/heatmap_comparison_part3/">Part 3</a>!</p>
+
+    </article>
+</div>
+
+
+        
+<nav role="navigation" class="flex-container bottom-menu">
+    
+<hr />
+<p>
+
+
+    
+        <a href="/posts">back</a>
+        
+            &#183;
+        
+    
+
+    
+        
+            <a href="/posts">posts</a>
+        
+    
+    
+        
+            &#183; 
+            <a href="/pubs">publications</a>
+        
+            &#183; 
+            <a href="/about">about</a>
+        
+            &#183; 
+            <a href="/contact">contact</a>
+        
+    
+    
+    
+        &#183; 
+        <a href="/">
+            main
+        </a>
+    
+
+</p>
+</nav>
+
+    </main>
+    
+    <footer class="flex-container footer">Copyright © 2021. Sarah Entwistle. All rights reserved.
+</footer>
+    
+    
+</body>
+
+</html>

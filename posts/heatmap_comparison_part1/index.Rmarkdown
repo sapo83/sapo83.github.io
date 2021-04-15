@@ -1,0 +1,117 @@
+---
+title: A Modern Day Comparison of 3 Heat Map Packages - Part 1
+author: Sarah Entwistle
+date: '2021-01-14'
+slug: heatmap_comparison_part1
+categories:
+  - R
+tags:
+  - TidyTuesday
+  - heat map
+  - tuition
+  - tidyverse
+  - part 1
+showDate: yes
+---
+
+I’m going to use some early data from the first week of [#TidyTuesday](https://twitter.com/search?q=%23TidyTuesday&src=typed_query) to do a comparison of different methods for making a heat map. The three packages I’m going to compare are [ggplot2](https://ggplot2.tidyverse.org/), [pheatmap](https://cran.r-project.org/web/packages/pheatmap/pheatmap.pdf), & [ComplexHeatmap](https://jokergoo.github.io/ComplexHeatmap-reference/book/).
+
+The first package I’m going to look at is [ggplot2](https://ggplot2.tidyverse.org/), an integral part of the [tidyverse](https://www.tidyverse.org/).** You can create a heat map in [ggplot2](https://ggplot2.tidyverse.org/) using `geom_tile()`. One of the pros of making any type of plot in [ggplot2](https://ggplot2.tidyverse.org/) is it plays well with other types of plots made in [ggplot2](https://ggplot2.tidyverse.org/). This allows you to combine many different types of plots into a single figure in a pretty straight forward fashion (for example, a heat map & a bar plot together). They all follow a similar pattern so once you get the hang of how to make one type of plot, you can apply those principles to other types of plots. The only big negative I can think of for making heat maps in [ggplot2](https://ggplot2.tidyverse.org/) is it’s a bit more difficult to cluster your data. It’s not impossible, but it’s quite a bit of extra work as compared to other packages.
+
+Let’s start by creating a heat map of our data in [ggplot2](https://ggplot2.tidyverse.org/). In Part 2 & Part 3 of this post, I’ll recreate that plot using [pheatmap](https://cran.r-project.org/web/packages/pheatmap/pheatmap.pdf) & https://jokergoo.github.io/ComplexHeatmap-reference/book/.
+
+** To clarify, calling [ggplot2](https://ggplot2.tidyverse.org/) a heat map package is trivializing the sheer number of things you can do with it. However, in this case, we’re only interested in the heat map capabilities.
+
+## A quick description of our data.
+
+This data is the average in-state tuition & fees for one year of full time study at a public 4 year institution for each state from the 2004-2005 school year to 2015-2016. You can download the data here.
+
+Let’s get started! First, let’s load the libraries we’re going to use.
+
+```{r, message = FALSE}
+library(tidyverse)
+library(RColorBrewer)
+```
+
+Next, I want to read in the file we’re going to get our data from. I saved it to my Github so I’ll have it for future use. Also, this way I can read it in from anywhere. I’m using read_csv() to read the file into an object named df. Then we can use df to see what our data looks like.
+
+```{r}
+df = read_csv("https://raw.githubusercontent.com/sapo83/TidyTuesday/master/2018/TT.20180403/us.avg.tuition.noCR.csv")
+
+df
+```
+
+So far everything looks good! The first thing I want to do is remove the dollar signs & the commas from each value. This will make it easier to work with.
+
+Let’s break the command down. `gsub()` is used to substitute a pattern with a new pattern. The general pattern is `gsub("old_pattern", "new_pattern", object)`. Here I’m looking for either a dollar sign or comma `[$,]` & replacing it with nothing `""`. I’m using `lapply()` to apply this function to each column. Here the `x` represents the argument being passed to the function. In this case the argument is a column from my data frame as a list. I wrap the whole command in `as.data.frame()` so that the returned object is a data frame.
+
+```{r}
+df = as.data.frame(lapply(df, function (x) {gsub("[$,]", "", x)}))
+
+head(df)
+```
+
+Next, I need this data frame to be in long format instead of wide.
+
+## A bit about long versus wide.
+
+Generally, to plot data using ggplot the data needs to be in long format. This means one observation in each row. This also means a single subject with multiple measurements will have multiple rows in the data frame. In our melted data frame, you can see each state (the subject) has multiple rows. Each row corresponds to a single measurement (tuition for a specific academic year).
+
+When a single subject has one row with multiple measurements then the data is in wide format. In our original data frame, each row had one state (the subject) with multiple measurements in each row (each column represents one measurement).
+
+Here I’m going to use `melt()` from the [reshape2](https://cran.r-project.org/web/packages/reshape2/reshape2.pdf) package. Another option is `pivot_longer()` from the [tidyr](https://tidyr.tidyverse.org/) package. [tidyr](https://tidyr.tidyverse.org/) is loaded as part of the [tidyverse](https://www.tidyverse.org/) library. Here is a vignette to learn more about `pivot_longer()` and `pivot_wider()`.
+
+In the melt, I used `variable = "Years"` to specify the variable column to be named Years. I used `value.name = "Tuition"` to specify that I want the value column named Tuition.
+
+Along with the melt, I also want to correct how the years are written. After the melt, the “Years” column looks like `X2005.06`. I don’t like that. Again, I’m using `gsub()` as a find and replace. I nested two `gsub()` commands to first replace the `X` with nothing & then replace the `.` with `-20`.
+
+Last thing! After the melt, “Tuition” is changed to a character column. This interferes with plotting our data later. In the `mutate()` call, I’m going to use `as.numeric()` to change it back to a number.
+
+Now everything looks better!
+
+```{r}
+melted_df = reshape2::melt(df, id.vars = "State", variable = "Years", 
+                           value.name = "Tuition") %>%
+  mutate(Years = gsub("[.]", "-20", gsub("X", "", Years)), Tuition = as.numeric(Tuition))
+
+head(melted_df)
+```
+
+Now that we have our melted data frame, let’s make a heat map!
+
+```{r}
+ggplot(data = melted_df, aes(x = Years, y = State, fill = Tuition)) +
+  geom_tile()
+```
+
+Not bad! One of the first things I noticed is that y axis is out of order. I’d like to see those states in alphabetical order. We can use `fct_rev()` to reverse the order.
+
+```{r}
+ggplot(data = melted_df, aes(x = Years, y = fct_rev(State), fill = Tuition)) +
+  geom_tile()
+```
+
+Better! Next I want to rotate the x axis labels so they are more readable. We can do this using a call to `theme()`. We specify `axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1)` to rotate the labels & then center them on the tick mark.
+
+```{r}
+ggplot(data = melted_df, aes(x = Years, y = fct_rev(State), fill = Tuition)) +
+  geom_tile() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1))
+```
+
+Last up, I want to change the color palette & relabel the axes. I really like the “red, yellow, blue” palette from [ColorBrewer](https://colorbrewer2.org/#type=diverging&scheme=RdYlBu&n=11). I adapted it here to use as a continuous scale. To relabel the axes, I use a call to `lab()`.
+
+```{r}
+cols = colorRampPalette(rev(brewer.pal(11, "RdYlBu")))
+
+ggplot(data = melted_df, aes(x = Years, y = fct_rev(State), fill = Tuition)) +
+  geom_tile() +
+  scale_fill_gradientn(colours = cols(11)) +
+  labs(y = "State",
+       x = "Years", 
+       fill = "Tuition ($)") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1))
+```
+
+
+That looks good! I’m going to call this done! If you have any questions, feel free to reach out to me on [Twitter](https://twitter.com/sapo83). Head over to [Part 2](https://sapo83.github.io/posts/heatmap_comparison_part2/) or [Part 3](https://sapo83.github.io/posts/heatmap_comparison_part3/).

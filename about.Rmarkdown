@@ -1,0 +1,38 @@
+---
+date: "2018-02-13T13:42:49-05:00"
+title: About
+---
+
+<!-- <style> -->
+<!-- div { -->
+<!--   column-count: 2; -->
+<!-- } -->
+<!-- </style> -->
+
+<!-- <div> -->
+<!-- <img src="/./about_files/headshot.jpg" style="display: inline-block; margin: 0; height: 35%; vertical-align: middle;" /> -->
+
+<style>
+  .col2 {
+    columns: 2 200px;         /* number of columns and width in pixels*/
+    -webkit-columns: 2 200px; /* chrome, safari */
+    -moz-columns: 2 200px;    /* firefox */
+    vertical-align: middle;
+  }
+</style>
+
+
+
+<div class="col2">
+
+   <img src="/./about_files/headshot.jpg" style="display: inline-block; margin: 0; width: 80%; vertical-align: middle;" />
+
+
+
+Hi! I’m Sarah. I’m a bioinformatics scientist in [Dr. Benjamin Vincent’s lab](https://unclineberger.org/vincentlab/) at the University of North Carolina - Chapel Hill. I work on novel immunogenomics tools with a focus on reproducible work flows. My primary languages are R, python & bash.
+
+I earned an MS in Bioinformatics at Northern Illinois University in the laboratory of [Dr. Yanbin Yin](http://bcb.unl.edu/) (now @ the University of Nebraska Lincoln). My thesis work used bioinformatics tools and work flows to investigate various microbial species. After graduate school, I switched to exploring how computational tools can answer various immunological questions in oncology data. My interest lies in the development of work flows others can utilize with minimal computational experience. I thrive in learning through sharing ideas in a collaborative environment.
+
+In my free time, I enjoy running & reading. I also enjoy exploring North Carolina looking for more pictures of cool fungi ([#FungusAmongUs](https://twitter.com/search?q=%23FungusAmongUs&src=typed_query))!
+</div>
+

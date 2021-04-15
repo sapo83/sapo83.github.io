@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>pheatmap on Sarah Codes</title>
+    <link>https://sapo83.github.io/tags/pheatmap/</link>
+    <description>Recent content in pheatmap on Sarah Codes</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 19 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://sapo83.github.io/tags/pheatmap/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>A Modern Day Comparison of 3 Heat Map Packages - Part 2</title>
+      <link>https://sapo83.github.io/posts/heatmap_comparison_part2/</link>
+      <pubDate>Tue, 19 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://sapo83.github.io/posts/heatmap_comparison_part2/</guid>
+      <description>We’re back to look at another heat map package! This is Part 2 of a 3 part series. You can find Part 1 here.
+As someone who learned R using primarily the tidyverse, pheatmap had a bit of a learning curve. As a grad student, I was looking for an easier way to make a heat map with clustered data. I was trying to make heat maps for about 50 gene clusters in a programmatic way.</description>
+    </item>
+    
+  </channel>
+</rss>

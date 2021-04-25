@@ -6,7 +6,43 @@
     <description>Recent content in Tags on Sarah Codes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 28 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://sapo83.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 22 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://sapo83.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>data.table</title>
+      <link>https://sapo83.github.io/tags/data.table/</link>
+      <pubDate>Thu, 22 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://sapo83.github.io/tags/data.table/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>TidyTuesday</title>
+      <link>https://sapo83.github.io/tags/tidytuesday/</link>
+      <pubDate>Thu, 22 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://sapo83.github.io/tags/tidytuesday/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tidyverse</title>
+      <link>https://sapo83.github.io/tags/tidyverse/</link>
+      <pubDate>Thu, 22 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://sapo83.github.io/tags/tidyverse/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>youtube</title>
+      <link>https://sapo83.github.io/tags/youtube/</link>
+      <pubDate>Thu, 22 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://sapo83.github.io/tags/youtube/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>blogdown</title>
       <link>https://sapo83.github.io/tags/blogdown/</link>
@@ -80,15 +116,6 @@
     </item>
     
     <item>
-      <title>TidyTuesday</title>
-      <link>https://sapo83.github.io/tags/tidytuesday/</link>
-      <pubDate>Sun, 24 Jan 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://sapo83.github.io/tags/tidytuesday/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>tuition</title>
       <link>https://sapo83.github.io/tags/tuition/</link>
       <pubDate>Sun, 24 Jan 2021 00:00:00 +0000</pubDate>
@@ -112,15 +139,6 @@
       <pubDate>Tue, 19 Jan 2021 00:00:00 +0000</pubDate>
       
       <guid>https://sapo83.github.io/tags/pheatmap/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>tidyverse</title>
-      <link>https://sapo83.github.io/tags/tidyverse/</link>
-      <pubDate>Tue, 19 Jan 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://sapo83.github.io/tags/tidyverse/</guid>
       <description></description>
     </item>
     

@@ -6,7 +6,17 @@
     <description>Recent content in tidyverse on Sarah Codes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 19 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://sapo83.github.io/tags/tidyverse/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 22 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://sapo83.github.io/tags/tidyverse/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Fun with Facets - A #TidyTuesday Adventure</title>
+      <link>https://sapo83.github.io/posts/2021-04-22-fun-with-facets-a-tidytuesday-adventure/</link>
+      <pubDate>Thu, 22 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://sapo83.github.io/posts/2021-04-22-fun-with-facets-a-tidytuesday-adventure/</guid>
+      <description>Facets can be a great way to visualize your data. Sometimes it helps to look at what different combinations of data look like &amp;amp; what may be missing. I used the Superbowl commercials data set available in the #TidyTuesday github repo to introduce facets here. When visualizing multiple groups, facets can really help in making a figure with multiple panels all aligned nicely with a good-looking aesthetic.
+I&amp;rsquo;m also trying something a bit new with this post.</description>
+    </item>
+    
     <item>
       <title>A Modern Day Comparison of 3 Heat Map Packages - Part 2</title>
       <link>https://sapo83.github.io/posts/heatmap_comparison_part2/</link>

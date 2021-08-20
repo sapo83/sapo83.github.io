@@ -4,7 +4,7 @@ title: Publications
 ---
 
   
-# 2020
+# 2021
 
 ```{r, results="asis", echo=FALSE, message=FALSE}
 # library(googlesheets4)
@@ -23,6 +23,16 @@ full_df = full_df %>%
   mutate(author = gsub('Entwistle S', '<span style="color: #E6C047">Entwistle S</span>', author)) %>%
   mutate(type = if_else(type == "abstract", "**", "")) 
 
+full_df %>%
+  filter(grepl("^2021", date)) %>%
+  glue_data("{author}. _{title}_. {journal}. [Link]({pub_med}) {type}
+
+            ")
+```
+
+# 2020
+
+```{r, results="asis", echo=FALSE, message=FALSE}
 full_df %>%
   filter(grepl("^2020", date)) %>%
   glue_data("{author}. _{title}_. {journal}. [Link]({pub_med}) {type}

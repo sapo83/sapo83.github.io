@@ -1,0 +1,106 @@
+---
+title: Back to the Basics - A Refresher on Basic Plot Types in R
+author: Sarah Entwistle
+date: '2021-08-16'
+slug: back_to_the_basics
+categories:
+  - R
+tags:
+  - TidyTuesday
+  - scatter plot
+  - line plot
+  - boxplot
+  - violin plot
+  - tidyverse
+showDate: yes
+---
+
+Recently, I was working through a small analysis for a collaboration & I had to google how to make a box plot in R. I used to do more data viz than I do now. I was a bit bummed to have forgotten some basic plot types so quickly. I thought I would use this post as a quick refresher on some basic plot types in [ggplot2](https://ggplot2.tidyverse.org/).
+
+Let's get started!
+
+I'm going to work with some #TidyTuesday data here. This data set looks are park availability across US metro areas. The specific cities we're going to work with are Chicago & Raleigh. We've going to be visualizing the amount of money each city spends pre resident over the course of 8 years (2013-2020). A more thorough description of this data set can be found [here](https://github.com/rfordatascience/tidytuesday/blob/master/data/2021/2021-06-22/readme.md).
+
+First, we’re going to load the libraries we will be using & read in our data. 
+
+```{r, message = FALSE}
+library(tidyverse)
+
+parks = read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-06-22/parks.csv")
+
+head(parks)
+```
+
+Next let's create a data frame to use for the different types of plots. We can filter the data by city and year. Next, we'll select only the columns we're interested in (`year`, `spend_per_resident_data`, `city`). Then we'll take a quick peek at the resulting data frame to make sure everything looks good!
+
+```{r, message = FALSE}
+parks_dat = parks %>%
+  filter((city == "Chicago" | city == "Raleigh") & year >= 2013) %>% 
+  select(year, spend_per_resident_data, city) 
+
+head(parks_dat)
+```
+
+Rather than add a `theme()` call to each plot in this post, I'm going to set a "global" theme. You can create this global theme by making a list of the different parameters you would like to pass to each plot. Here I'm starting with `theme_bw()`. I'm setting the `color` & `fill` palettes. I'm also moving the legend to the bottom for each plot using `legend.position`. This can be added to any `ggplot2` object by adding `+ gglayer_theme`.
+
+```{r, message - FALSE}
+gglayer_theme <- list(
+  theme_bw(),
+  scale_color_brewer(palette = "Dark2"),
+  scale_fill_brewer(palette = "Dark2"),
+  theme(legend.position = "bottom")
+)
+```
+
+First up, we'll do a bar plot. Everyone loves a good plot! It's an easy to read way to share data. Here, I aave year on the x axis & "spend per resident" on the y axis. I have filled the bars based on the city. 
+
+A few quirks here: I used `factor()`to get R to understand that I want to treat the year was a discrete variable & not a continuous variable. I used `stat = "identity"` to tell R that I want the height of each bar to be the dollar amount spent per resident. Lastly, I used `position = "dodge"` to get the bars next to each other instead of stacked on top of each other.
+
+```{r, message = FALSE}
+ggplot(parks_dat, aes(x = factor(year), y = spend_per_resident_data, fill = city)) +
+  geom_bar(aes(group = city), stat = "identity", position = "dodge") +
+  gglayer_theme
+```
+
+Next, let's do a scatter plot! This code looks very similar to the bar plot code. Main changes: using `geom_point()` instead of `geom_bar()`. Also, I used color to change the color of the dots based on the city. This ends up being a bit harder to read than the bar plot. 
+
+```{r, message = FALSE}
+ggplot(parks_dat, aes(x = factor(year), y = spend_per_resident_data, color = city)) +
+  geom_point(aes(group = city)) +
+  gglayer_theme
+```
+
+Let's look at a line plot next! This is the exact same code as the scatter plot except we changed `geom_point()` to `geom_line()`. This looks better but it's still tough to quickly see the values for each year. 
+
+```{r, message = FALSE}
+ggplot(parks_dat, aes(x = factor(year), y = spend_per_resident_data, color = city)) +
+  geom_line(aes(group = city)) +
+  gglayer_theme
+```
+
+We can combine the scatter plot & line plot to get a better plot! To get this, we use both `geom_line()` & `geom_point()`. This is much more readable. Looks good!
+
+```{r, message = FALSE}
+ggplot(parks_dat, aes(x = factor(year), y = spend_per_resident_data, color = city)) +
+  geom_line(aes(group = city)) +
+  geom_point() +
+  gglayer_theme
+```
+
+Next up, we'll do a box plot. Box plots allow us to see the distribution of each group. It also lets us do a quick comparison of the median. Once again, we just swap out the `geom` call.
+
+```{r, message = FALSE}
+ggplot(parks_dat, aes(x = city, y = spend_per_resident_data, color = city)) +
+  geom_boxplot(aes(group = city)) +
+  gglayer_theme 
+```
+
+Last up, let's do a quick violin plot. Similar to a box plot, but the shape allows us to see where the distribution is highest. Here we use, `geom_violin()` to get the violin plot.
+
+```{r, message = FALSE}
+ggplot(parks_dat, aes(x = city, y = spend_per_resident_data, fill = city)) +
+  geom_violin(aes(group = city)) +
+  gglayer_theme 
+```
+
+This wraps up a (very) brief refresher on some basic plot types. Feel free to reach out with any questions/comments/concerns via [Twitter](https://twitter.com/sapo83) or using one of the other methods on my [contact](https://sapo83.github.io/contact/) page. Thanks for reading!

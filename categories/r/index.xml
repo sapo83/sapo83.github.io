@@ -6,7 +6,17 @@
     <description>Recent content in R on Sarah Codes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 22 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://sapo83.github.io/categories/r/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 16 Aug 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://sapo83.github.io/categories/r/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Back to the Basics - A Refresher on Basic Plot Types in R</title>
+      <link>https://sapo83.github.io/posts/back_to_the_basics/</link>
+      <pubDate>Mon, 16 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://sapo83.github.io/posts/back_to_the_basics/</guid>
+      <description>Recently, I was working through a small analysis for a collaboration &amp;amp; I had to google how to make a box plot in R. I used to do more data viz than I do now. I was a bit bummed to have forgotten some basic plot types so quickly. I thought I would use this post as a quick refresher on some basic plot types in ggplot2.
+Let&amp;rsquo;s get started!</description>
+    </item>
+    
     <item>
       <title>Fun with Facets - A #TidyTuesday Adventure</title>
       <link>https://sapo83.github.io/posts/2021-04-22-fun-with-facets-a-tidytuesday-adventure/</link>

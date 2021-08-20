@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="google-site-verification" content="ZeDNRFDD2w8gD6qLEq-DyiGXL3aNseNC0PU89149s40" />
+
+<meta name="description" content="Sarah Codes">
+<title>
+    Back to the Basics - A Refresher on Basic Plot Types in R - Sarah Codes
+</title>
+
+
+<link rel="shortcut icon" href="/computer.png">
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.min.98d38cb044c5237b66dfee009fe7b294f7aef9bfa969d37d8dab599728c6da0b.css" integrity="sha256-mNOMsETFI3tm3&#43;4An&#43;eylPeu&#43;b&#43;padN9jatZlyjG2gs=" crossorigin="anonymous" media="screen">
+
+
+
+
+  
+
+
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Didact+Gothic">
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://sapo83.github.io/116"/>
+
+<meta name="twitter:title" content="Back to the Basics - A Refresher on Basic Plot Types in R"/>
+<meta name="twitter:description" content="Recently, I was working through a small analysis for a collaboration &amp; I had to google how to make a box plot in R. I used to do more data viz than I do now. I was a bit bummed to have forgotten some basic plot types so quickly. I thought I would use this post as a quick refresher on some basic plot types in ggplot2.
+Let&rsquo;s get started!"/>
+
+<meta property="og:title" content="Back to the Basics - A Refresher on Basic Plot Types in R" />
+<meta property="og:description" content="Recently, I was working through a small analysis for a collaboration &amp; I had to google how to make a box plot in R. I used to do more data viz than I do now. I was a bit bummed to have forgotten some basic plot types so quickly. I thought I would use this post as a quick refresher on some basic plot types in ggplot2.
+Let&rsquo;s get started!" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sapo83.github.io/posts/back_to_the_basics/" />
+<meta property="og:image" content="https://sapo83.github.io/116"/>
+<meta property="article:published_time" content="2021-08-16T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-08-16T00:00:00+00:00" /><meta property="og:site_name" content="Sarah Codes" />
+
+<script data-goatcounter="https://sapo83.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
+    
+
+    
+    
+    
+    <title>
+        
+        Back to the Basics - A Refresher on Basic Plot Types in R
+        
+    </title>
+</head>
+
+<body>
+    
+    
+    <header class="wrap flex-container">
+        <h1>Back to the Basics - A Refresher on Basic Plot Types in R</h1>
+    </header>
+    
+    <main class="wrap">
+        
+<div class="flex-container">
+    <aside role="complementary">
+        Mon Aug 16, 2021 &#183; 953 words
+        <div class="tag-container">
+            
+            
+            <span class="tag">
+                <a href="/tags/tidytuesday/">
+                    TidyTuesday
+                </a>
+            </span>
+            
+            
+            
+            <span class="tag">
+                <a href="/tags/scatter-plot/">
+                    scatter plot
+                </a>
+            </span>
+            
+            
+            
+            <span class="tag">
+                <a href="/tags/line-plot/">
+                    line plot
+                </a>
+            </span>
+            
+            
+            
+            <span class="tag">
+                <a href="/tags/boxplot/">
+                    boxplot
+                </a>
+            </span>
+            
+            
+            
+            <span class="tag">
+                <a href="/tags/violin-plot/">
+                    violin plot
+                </a>
+            </span>
+            
+            
+            
+            <span class="tag">
+                <a href="/tags/tidyverse/">
+                    tidyverse
+                </a>
+            </span>
+            
+            
+        </div>
+    </aside>
+    <hr />
+    <article role="article">
+        <p>Recently, I was working through a small analysis for a collaboration &amp; I had to google how to make a box plot in R. I used to do more data viz than I do now. I was a bit bummed to have forgotten some basic plot types so quickly. I thought I would use this post as a quick refresher on some basic plot types in <a href="https://ggplot2.tidyverse.org/">ggplot2</a>.</p>
+<p>Let&rsquo;s get started!</p>
+<p>I&rsquo;m going to work with some #TidyTuesday data here. This data set looks are park availability across US metro areas. The specific cities we&rsquo;re going to work with are Chicago &amp; Raleigh. We&rsquo;ve going to be visualizing the amount of money each city spends pre resident over the course of 8 years (2013-2020). A more thorough description of this data set can be found <a href="https://github.com/rfordatascience/tidytuesday/blob/master/data/2021/2021-06-22/readme.md">here</a>.</p>
+<p>First, we’re going to load the libraries we will be using &amp; read in our data.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(tidyverse)
+
+parks <span style="color:#f92672">=</span> <span style="color:#a6e22e">read_csv</span>(<span style="color:#e6db74">&#34;https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-06-22/parks.csv&#34;</span>)
+
+<span style="color:#a6e22e">head</span>(parks)
+</code></pre></div><pre><code>## # A tibble: 6 x 28
+##    year  rank city         med_park_size_da… med_park_size_poi… park_pct_city_d…
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                    &lt;dbl&gt;              &lt;dbl&gt; &lt;chr&gt;           
+## 1  2020     1 Minneapolis                5.7                 26 15%             
+## 2  2020     2 Washington,…               1.4                  5 24%             
+## 3  2020     3 St. Paul                   3.2                 14 15%             
+## 4  2020     4 Arlington, …               2.4                 10 11%             
+## 5  2020     5 Cincinnati                 4.4                 20 14%             
+## 6  2020     6 Portland                   4.9                 22 18%             
+## # … with 22 more variables: park_pct_city_points &lt;dbl&gt;,
+## #   pct_near_park_data &lt;chr&gt;, pct_near_park_points &lt;dbl&gt;,
+## #   spend_per_resident_data &lt;chr&gt;, spend_per_resident_points &lt;dbl&gt;,
+## #   basketball_data &lt;dbl&gt;, basketball_points &lt;dbl&gt;, dogpark_data &lt;dbl&gt;,
+## #   dogpark_points &lt;dbl&gt;, playground_data &lt;dbl&gt;, playground_points &lt;dbl&gt;,
+## #   rec_sr_data &lt;dbl&gt;, rec_sr_points &lt;dbl&gt;, restroom_data &lt;dbl&gt;,
+## #   restroom_points &lt;dbl&gt;, splashground_data &lt;dbl&gt;, splashground_points &lt;dbl&gt;,
+## #   amenities_points &lt;dbl&gt;, total_points &lt;dbl&gt;, total_pct &lt;dbl&gt;,
+## #   city_dup &lt;chr&gt;, park_benches &lt;dbl&gt;
+</code></pre><p>Next let&rsquo;s create a data frame to use for the different types of plots. We can filter the data by city and year. Next, we&rsquo;ll select only the columns we&rsquo;re interested in (<code>year</code>, <code>spend_per_resident_data</code>, <code>city</code>). Then we&rsquo;ll take a quick peek at the resulting data frame to make sure everything looks good!</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">parks_dat <span style="color:#f92672">=</span> parks <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">filter</span>((city <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Chicago&#34;</span> <span style="color:#f92672">|</span> city <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Raleigh&#34;</span>) <span style="color:#f92672">&amp;</span> year <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">2013</span>) <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">select</span>(year, spend_per_resident_data, city) 
+
+<span style="color:#a6e22e">head</span>(parks_dat)
+</code></pre></div><pre><code>## # A tibble: 6 x 3
+##    year spend_per_resident_data city   
+##   &lt;dbl&gt; &lt;chr&gt;                   &lt;chr&gt;  
+## 1  2020 $179                    Chicago
+## 2  2020 $157                    Raleigh
+## 3  2019 $171                    Chicago
+## 4  2019 $194                    Raleigh
+## 5  2018 $172                    Chicago
+## 6  2018 $202                    Raleigh
+</code></pre><p>Rather than add a <code>theme()</code> call to each plot in this post, I&rsquo;m going to set a &ldquo;global&rdquo; theme. You can create this global theme by making a list of the different parameters you would like to pass to each plot. Here I&rsquo;m starting with <code>theme_bw()</code>. I&rsquo;m setting the <code>color</code> &amp; <code>fill</code> palettes. I&rsquo;m also moving the legend to the bottom for each plot using <code>legend.position</code>. This can be added to any <code>ggplot2</code> object by adding <code>+ gglayer_theme</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">gglayer_theme <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">list</span>(
+  <span style="color:#a6e22e">theme_bw</span>(),
+  <span style="color:#a6e22e">scale_color_brewer</span>(palette <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Dark2&#34;</span>),
+  <span style="color:#a6e22e">scale_fill_brewer</span>(palette <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Dark2&#34;</span>),
+  <span style="color:#a6e22e">theme</span>(legend.position <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;bottom&#34;</span>)
+)
+</code></pre></div><p>First up, we&rsquo;ll do a bar plot. Everyone loves a good plot! It&rsquo;s an easy to read way to share data. Here, I aave year on the x axis &amp; &ldquo;spend per resident&rdquo; on the y axis. I have filled the bars based on the city.</p>
+<p>A few quirks here: I used <code>factor()</code>to get R to understand that I want to treat the year was a discrete variable &amp; not a continuous variable. I used <code>stat = &quot;identity&quot;</code> to tell R that I want the height of each bar to be the dollar amount spent per resident. Lastly, I used <code>position = &quot;dodge&quot;</code> to get the bars next to each other instead of stacked on top of each other.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">ggplot</span>(parks_dat, <span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> <span style="color:#a6e22e">factor</span>(year), y <span style="color:#f92672">=</span> spend_per_resident_data, fill <span style="color:#f92672">=</span> city)) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_bar</span>(<span style="color:#a6e22e">aes</span>(group <span style="color:#f92672">=</span> city), stat <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;identity&#34;</span>, position <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;dodge&#34;</span>) <span style="color:#f92672">+</span>
+  gglayer_theme
+</code></pre></div><p><img src="https://sapo83.github.io/posts/back_to_the_basics/index_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>Next, let&rsquo;s do a scatter plot! This code looks very similar to the bar plot code. Main changes: using <code>geom_point()</code> instead of <code>geom_bar()</code>. Also, I used color to change the color of the dots based on the city. This ends up being a bit harder to read than the bar plot.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">ggplot</span>(parks_dat, <span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> <span style="color:#a6e22e">factor</span>(year), y <span style="color:#f92672">=</span> spend_per_resident_data, color <span style="color:#f92672">=</span> city)) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_point</span>(<span style="color:#a6e22e">aes</span>(group <span style="color:#f92672">=</span> city)) <span style="color:#f92672">+</span>
+  gglayer_theme
+</code></pre></div><p><img src="https://sapo83.github.io/posts/back_to_the_basics/index_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>Let&rsquo;s look at a line plot next! This is the exact same code as the scatter plot except we changed <code>geom_point()</code> to <code>geom_line()</code>. This looks better but it&rsquo;s still tough to quickly see the values for each year.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">ggplot</span>(parks_dat, <span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> <span style="color:#a6e22e">factor</span>(year), y <span style="color:#f92672">=</span> spend_per_resident_data, color <span style="color:#f92672">=</span> city)) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_line</span>(<span style="color:#a6e22e">aes</span>(group <span style="color:#f92672">=</span> city)) <span style="color:#f92672">+</span>
+  gglayer_theme
+</code></pre></div><p><img src="https://sapo83.github.io/posts/back_to_the_basics/index_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>We can combine the scatter plot &amp; line plot to get a better plot! To get this, we use both <code>geom_line()</code> &amp; <code>geom_point()</code>. This is much more readable. Looks good!</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">ggplot</span>(parks_dat, <span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> <span style="color:#a6e22e">factor</span>(year), y <span style="color:#f92672">=</span> spend_per_resident_data, color <span style="color:#f92672">=</span> city)) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_line</span>(<span style="color:#a6e22e">aes</span>(group <span style="color:#f92672">=</span> city)) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_point</span>() <span style="color:#f92672">+</span>
+  gglayer_theme
+</code></pre></div><p><img src="https://sapo83.github.io/posts/back_to_the_basics/index_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>Next up, we&rsquo;ll do a box plot. Box plots allow us to see the distribution of each group. It also lets us do a quick comparison of the median. Once again, we just swap out the <code>geom</code> call.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">ggplot</span>(parks_dat, <span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> city, y <span style="color:#f92672">=</span> spend_per_resident_data, color <span style="color:#f92672">=</span> city)) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_boxplot</span>(<span style="color:#a6e22e">aes</span>(group <span style="color:#f92672">=</span> city)) <span style="color:#f92672">+</span>
+  gglayer_theme 
+</code></pre></div><p><img src="https://sapo83.github.io/posts/back_to_the_basics/index_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>Last up, let&rsquo;s do a quick violin plot. Similar to a box plot, but the shape allows us to see where the distribution is highest. Here we use, <code>geom_violin()</code> to get the violin plot.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">ggplot</span>(parks_dat, <span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> city, y <span style="color:#f92672">=</span> spend_per_resident_data, fill <span style="color:#f92672">=</span> city)) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_violin</span>(<span style="color:#a6e22e">aes</span>(group <span style="color:#f92672">=</span> city)) <span style="color:#f92672">+</span>
+  gglayer_theme 
+</code></pre></div><p><img src="https://sapo83.github.io/posts/back_to_the_basics/index_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>This wraps up a (very) brief refresher on some basic plot types. Feel free to reach out with any questions/comments/concerns via <a href="https://twitter.com/sapo83">Twitter</a> or using one of the other methods on my <a href="https://sapo83.github.io/contact/">contact</a> page. Thanks for reading!</p>
+
+    </article>
+</div>
+
+
+        
+<nav role="navigation" class="flex-container bottom-menu">
+    
+<hr />
+<p>
+
+
+    
+        <a href="/posts">back</a>
+        
+            &#183;
+        
+    
+
+    
+        
+            <a href="/posts">posts</a>
+        
+    
+    
+        
+            &#183; 
+            <a href="/pubs">publications</a>
+        
+            &#183; 
+            <a href="/about">about</a>
+        
+            &#183; 
+            <a href="/contact">contact</a>
+        
+    
+    
+    
+        &#183; 
+        <a href="/">
+            main
+        </a>
+    
+
+</p>
+</nav>
+
+    </main>
+    
+    <footer class="flex-container footer">Copyright © 2021. Sarah Entwistle. All rights reserved.
+</footer>
+    
+    
+</body>
+
+</html>

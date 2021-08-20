@@ -6,7 +6,17 @@
     <description>Recent content on Sarah Codes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 22 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://sapo83.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 16 Aug 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://sapo83.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Back to the Basics - A Refresher on Basic Plot Types in R</title>
+      <link>https://sapo83.github.io/posts/back_to_the_basics/</link>
+      <pubDate>Mon, 16 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://sapo83.github.io/posts/back_to_the_basics/</guid>
+      <description>Recently, I was working through a small analysis for a collaboration &amp;amp; I had to google how to make a box plot in R. I used to do more data viz than I do now. I was a bit bummed to have forgotten some basic plot types so quickly. I thought I would use this post as a quick refresher on some basic plot types in ggplot2.
+Let&amp;rsquo;s get started!</description>
+    </item>
+    
     <item>
       <title>Fun with Facets - A #TidyTuesday Adventure</title>
       <link>https://sapo83.github.io/posts/2021-04-22-fun-with-facets-a-tidytuesday-adventure/</link>
@@ -81,8 +91,8 @@ The first package I’m going to look at is ggplot2, an integral part of the tid
       <pubDate>Tue, 13 Feb 2018 13:42:49 -0500</pubDate>
       
       <guid>https://sapo83.github.io/pubs/</guid>
-      <description>2020&amp;nbsp;¶ Smith CC, Entwistle S, Willis C, Vensko S, Beck W, Garness J, Sambade M, Routh E, Olsen K, Kodysh J, O&amp;rsquo;Donnell T, Haber C, Heiss K, Stadler V, Garrison E, Grant OC, Woods R, Heise M, Vincent BG, Rubinsteyn A. Landscape and Selection of Vaccine Epitopes in SARS-CoV-2. bioRxiv. Link
-Smith C, Entwistle S, Willis C, Vensko S, Beck W, Garness J, Sambade M, Routh E, Olsen K, Carpenter B, Gentry K, Fadri M, Fini M, Washington A, Kodysh J, O’Donnell T, Haber C, Heiss K, Stadler V, Garrison E, Grant O, Woods R, Heise M, Vincent B, Rubinsteyn A.</description>
+      <description>2021&amp;nbsp;¶ Smith CC, Olsen KS, Gentry KM, Sambade M, Beck W, Garness J, Entwistle S, Willis C, Vensko S, Woods A, Fini M, Carpenter B, Routh E, Kodysh J, O’Donnell T, Haber C, Heiss K, Stadler V, Garrison E, Sandor AM, Ting JPY, Weiss J, Krajewski K, Grant OC, Woods RJ, Heise M, Vincent BG, Rubinsteyn A. Landscape and Selection of Vaccine Epitopes in SARS-CoV-2. Genome Medicine. Link
+2020&amp;nbsp;¶ Smith C, Entwistle S, Willis C, Vensko S, Beck W, Garness J, Sambade M, Routh E, Olsen K, Carpenter B, Gentry K, Fadri M, Fini M, Washington A, Kodysh J, O’Donnell T, Haber C, Heiss K, Stadler V, Garrison E, Grant O, Woods R, Heise M, Vincent B, Rubinsteyn A.</description>
     </item>
     
   </channel>

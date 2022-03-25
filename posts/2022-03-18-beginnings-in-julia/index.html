@@ -80,7 +80,7 @@
         
 <div class="flex-container">
     <aside role="complementary">
-        Fri Mar 18, 2022 &#183; 893 words
+        Fri Mar 18, 2022 &#183; 973 words
         <div class="tag-container">
             
             
@@ -120,7 +120,7 @@
     <hr />
     <article role="article">
         <p>I&rsquo;ve started learning <a href="https://julialang.org/">Julia</a>. It has been awhile since I taught myself a new language. I&rsquo;ve been doing a combination of two things. 1) Working my way through <a href="https://benlauwens.github.io/ThinkJulia.jl/latest/book.html">Think Julia: How to Think Like a Computer Scientist</a>. 2) I&rsquo;ve been trying to implement a random forest model using an abalone data set I downloaded for another project. Between these 2 methods, I&rsquo;ve picked up a few things. I&rsquo;m going to work through a few basic ideas here.</p>
-<p>A little bit of set up before I get into this. I&rsquo;m running these Julia code chunks in an Rmarkdown file. To get them to work you need to install the <a href="https://hwborchers.github.io/">JuliaCall</a> package &amp; add a few extra lines of code to your setup code chunk. I&rsquo;ve left the code chunk visible so you can see how I made this work. Also, you need to have <a href="https://juliainterop.github.io/RCall.jl/stable/installation/">RCall</a> installed in Julia!</p>
+<p>A little bit of set up before I get into this. I&rsquo;m running these Julia code chunks in an Rmarkdown file (because that&rsquo;s why way my website is set up). To get them to work you need to install the <a href="https://hwborchers.github.io/">JuliaCall</a> package &amp; add a few extra lines of code to your setup code chunk. I&rsquo;ve left the code chunk visible so you can see how I made this work. Also, you need to have <a href="https://juliainterop.github.io/RCall.jl/stable/installation/">RCall</a> installed in Julia!</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(JuliaCall)
 julia_path <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;/Applications/Julia-1.7.app/Contents/Resources/julia/bin&#34;</span>
 <span style="color:#a6e22e">julia_setup</span>(julia_path)
@@ -135,7 +135,7 @@ BASE_DIR <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;/
 
 println(BASE_DIR)
 </code></pre></div><pre><code>## /Users/sarah/Documents/learn_Julia/random_forest/data
-</code></pre><p>Tip: using <code>println()</code> instead of <code>print</code> adds a new line to the end of whatever you print.</p>
+</code></pre><p><strong>Tip:</strong> using <code>println()</code> instead of <code>print</code> adds a new line to the end of whatever you print.</p>
 <p>Now that we&rsquo;ve set our path, let&rsquo;s read in our file. There are a couple different ways to do that. Isn&rsquo;t there always?! I chose this way because it was the easiest for me to understand. Also, this dataset is relatively small so we aren&rsquo;t very worried about it taking too long to load.</p>
 <p>The <code>string()</code> function concatenates our <code>BASE_DIR</code> variable with the file name. By specifying <code>DataFrame</code>, we can save our newly read in file as a data frame object immediately. We set the delimiter to <code>,</code> using <code>delim = &quot;,&quot;</code>. We tell the <code>CSV.read()</code> function that our file has no hdear by using <code>header = false</code>.</p>
 <p>We&rsquo;ll use <code>first()</code> to take a quick look at our data frame before we move on.</p>
@@ -175,16 +175,16 @@ sex_count_dat <span style="color:#f92672">=</span> countmap(dat<span style="colo
 ##   &quot;I&quot; =&gt; 1342
 ##   &quot;M&quot; =&gt; 1528
 ##   &quot;F&quot; =&gt; 1307
-</code></pre><p>That&rsquo;s informative but let&rsquo;s plot it to get a better look!</p>
+</code></pre><p>That&rsquo;s informative but let&rsquo;s plot it to get a better look! First, I&rsquo;m going to make a list of the values I want on the tick marks in the specified order. Next I&rsquo;ll use <code>bar</code> to make the plot, using the <code>xticks</code> option to set my tick mark labels.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia"><span style="color:#66d9ef">using</span> StatsPlots
 
-<span style="color:#75715e"># scatter((dat.Rings, dat.Whole_Weight), group = dat.Sex, markersize = 2.5, markerstrokewidth = 0)</span>
 s <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;M&#34;</span>, <span style="color:#e6db74">&#34;F&#34;</span>, <span style="color:#e6db74">&#34;I&#34;</span>];
-<span style="color:#75715e"># datamap = countmap(data)</span>
 bar((x <span style="color:#f92672">-&gt;</span> sex_count_dat[x])<span style="color:#f92672">.</span>(s), xticks <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">3</span>, s))
 </code></pre></div><p><img src="https://sapo83.github.io/posts/2022-03-18-beginnings-in-julia/index_files/figure-html/unnamed-chunk-5-J1.png" width="300" /></p>
-<p><em>Possibly helpful sidenote:</em> Getting Julia to render these plots using R markdown required a couple extra steps. My original Julia installation was 1.6 using the .dmg file provided by the Julia Org <a href="https://julialang.org/downloads/">website</a>. I wanted to upgrade to 1.7. I installed it using brew install. I ran into an error I couldn&rsquo;t figure out. I uninstalled v1.7 using brew &amp; then did a new installation from <a href="https://julialang.org/downloads/">here</a>. Then I ran into a new error <code>could not load library &quot;libjulia.1.dylib&quot;</code>. To solve this, I created a symlink from the directory that Julia was looking in to the directory this file was actually in. That seems to have sovled my problem for now! Probably could&rsquo;ve not spent 3 hours debugging this if I&rsquo;d just done the symlink thing to begin with!</p>
+<p>I&rsquo;m going to stop here for now! This is definitely a very good start!</p>
+<p><strong>Possibly helpful side note</strong> Getting Julia to render these plots using R markdown required a couple extra steps. My original Julia installation was 1.6 using the .dmg file provided by the Julia Org <a href="https://julialang.org/downloads/">website</a>. I wanted to upgrade to 1.7. I installed it using brew install. I ran into an error I couldn&rsquo;t figure out. I uninstalled v1.7 using brew &amp; then did a new installation from <a href="https://julialang.org/downloads/">here</a>. Then I ran into a new error <code>could not load library &quot;libjulia.1.dylib&quot;</code>. To solve this, I created a symlink from the directory that Julia was looking in to the directory this file was actually in. That seems to have sovled my problem for now! Probably could&rsquo;ve not spent 3 hours debugging this if I&rsquo;d just done the symlink thing to begin with!</p>
 <center><iframe src="https://giphy.com/embed/d6TryGjzqrrmo" width="50%" height="426" frameBorder="0" class="giphy-embed" allowFullScreen data-external="1"></iframe></center>
+<p>Also, I had to run <code>brew reinstall icu4c</code> in the terminal to get <code>blogdown::hugo_build()</code> to work. It&rsquo;s been so long since I&rsquo;ve done a blog post that I&rsquo;m not even sure what that&rsquo;s about.</p>
 <p>Hope you found this helpful! If you have any questions/comments/concerns/feedback, I’d love to hear from you! Feel free to reach out to me on <a href="https://twitter.com/sapo83">Twitter</a>.</p>
 
     </article>
@@ -235,7 +235,7 @@ bar((x <span style="color:#f92672">-&gt;</span> sex_count_dat[x])<span style="co
 
     </main>
     
-    <footer class="flex-container footer">Copyright © 2021. Sarah Entwistle. All rights reserved.
+    <footer class="flex-container footer">Copyright © 2022. Sarah Dexheimer. All rights reserved.
 </footer>
     
     
